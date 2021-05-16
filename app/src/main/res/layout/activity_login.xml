@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.Login">
+
+    <RelativeLayout
+        android:id="@+id/lg_header"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/deliverybike" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="220dp"
+        android:layout_height="480dp"
+        android:background="@drawable/shape_left_pannel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lg_header">
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/login_panel"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:background="@drawable/shape_login_panel"
+        app:layout_constraintTop_toBottomOf="@+id/lg_header"
+        tools:ignore="MissingConstraints"
+        android:paddingTop="70dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:orientation="vertical"
+        >
+
+        <EditText
+            android:id="@+id/login_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_username_32"
+            android:hint="Tài Khoản"
+            />
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mật Khẩu"
+            android:drawableRight="@drawable/icons_key"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:background="@drawable/ic_wave_login">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_dangnhap"
+        android:textColor="@color/white"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:text="Đăng Nhập"
+        app:layout_constraintBottom_toBottomOf="@id/login_panel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/shape_login_button"
+        app:backgroundTint = "@null"
+        tools:ignore="MissingConstraints"
+         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đăng Nhập"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@id/login_panel"
+        android:layout_marginLeft="40dp"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
