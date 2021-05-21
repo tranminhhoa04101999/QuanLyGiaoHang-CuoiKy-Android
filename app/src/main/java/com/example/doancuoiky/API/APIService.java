@@ -13,7 +13,11 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIService {
@@ -36,5 +40,15 @@ public interface APIService {
     Call<ArrayList<Role>>  getRole();
 
     @GET("tasks")
-    Call<ArrayList<Task>>  getClients();
+    Call<ArrayList<Task>>  getTasks();
+
+    @GET("clients")
+    Call<ArrayList<Client>>  getClients();
+
+    @POST("AddTaskClient/{idClient}")
+    Call<Void> addTask(@Body Task task, @Path("idClient") int idClient);
+
+    @DELETE("tasks/{id}")
+    Call<Void> deleteTask(@Path("id") int id);
+
 }
