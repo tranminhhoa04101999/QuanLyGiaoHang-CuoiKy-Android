@@ -1,71 +1,86 @@
 package com.example.doancuoiky.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.example.doancuoiky.Fragment.CaNhanFragment_admin;
-import com.example.doancuoiky.Fragment.HomeFragment_admin;
-import com.example.doancuoiky.Fragment.NhiemVuFragment_admin;
-import com.example.doancuoiky.Fragment.ThongKeFragment_admin;
 import com.example.doancuoiky.R;
 
 public class ManHinhChinhAdmin extends AppCompatActivity {
 
-    MeowBottomNavigation bottomNavigation;
-    private static final  int ID_HOME = 1 ;
-    private static final  int ID_THONGKE = 2 ;
-    private static final  int ID_NHIEMVU = 3 ;
-    private static final  int ID_CANHAN = 4 ;
+    Toolbar toolbar ;
+    LinearLayout layoutSP, layoutKH,layoutDDH,layoutTK;
+    TextView tvInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_chinh_admin);
 
-        bottomNavigation = findViewById(R.id.bottom_navigation);
-        bottomNavigation.add(new MeowBottomNavigation.Model(ID_HOME,R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(ID_THONGKE,R.drawable.ic_chart));
-        bottomNavigation.add(new MeowBottomNavigation.Model(ID_NHIEMVU,R.drawable.ic_mission));
-        bottomNavigation.add(new MeowBottomNavigation.Model(ID_CANHAN,R.drawable.ic_person));
 
 
-        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
+        toolbar=findViewById(R.id.toolbar_manhinhchinhadmin);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Quyền Admin");
 
-            }
-        });
+        setControl();
 
-        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
-            @Override
-            public void onReselectItem(MeowBottomNavigation.Model item) {
+//        Intent intentSp = new Intent(this, HienThiSanPham.class);
+//        layoutSP.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(intentSp);
+//            }
+//        });
+//
+//        Intent intentKH = new Intent(this,QLKhachHang.class);
+//        layoutKH.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(intentKH);
+//            }
+//        });
+//
+//        Intent intentDDH = new Intent(this,QLDonDatHang.class);
+//        layoutDDH.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(intentDDH);
+//            }
+//        });
+//
+//        Intent intentTK = new Intent(this,HienThiTopSanPham.class);
+//        layoutTK.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(intentTK);
+//            }
+//        });
+//
+//        tvInfo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Dialog infoDialog = new Dialog(TrangChu.this);
+//                infoDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                infoDialog.setContentView(R.layout.dialog_thong_tin);
+//                infoDialog.show();
+//            }
+//        });
 
-            }
-        });
-
-        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
-            @Override
-            public void onShowItem(MeowBottomNavigation.Model item) {
-                Fragment fragment = null;
-                switch (item.getId())
-                {
-                    case ID_HOME:
-                        fragment = new HomeFragment_admin();
-                        break;
-                    case ID_NHIEMVU:
-                        fragment = new NhiemVuFragment_admin();
-                        break;
-                    case ID_THONGKE:
-                        fragment = new ThongKeFragment_admin();
-                        break;
-                    case ID_CANHAN:
-                        fragment = new CaNhanFragment_admin();
-                        break;
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.root_contrainer,fragment).commit();
-            }
-        });
+    }
+    private void setControl() {
+        layoutSP = findViewById(R.id.layoutsanpham);
+        layoutKH = findViewById(R.id.layoutKH);
+        layoutDDH = findViewById(R.id.layoutDDH);
+        layoutTK = findViewById(R.id.layoutTK);
+        tvInfo=findViewById(R.id.tvInfo);
     }
 }

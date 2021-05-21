@@ -13,14 +13,17 @@
         android:theme="@style/Theme.DoAnCuoiKy"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.ManHinhChinhKhachHang" />
-        <activity android:name=".activity.ManHinhChinhAdmin" />
+
+        <activity
+            android:name=".activity.ManHinhChinhAdmin"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity android:name=".activity.ManHinhChinhTaiXe">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
@@ -30,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.Login"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">

@@ -22,4 +22,11 @@
     <color name="colorBlue">#3d93d9</color>
     <color name="colorGreenLight">#5ff0f7</color>
 
+<!--    color picker-->
+    <color name="colorPrimaryPicker">#FFFFFF</color>
+    <color name="colorPrimaryDarkPicker">#FFFFFF</color>
+    <color name="colorAccentPicker">#000000</color>
+    <color name="colorControlPicker">#EDEDED</color>
+
+
 </resources>
