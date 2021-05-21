@@ -33,13 +33,13 @@ public class ManHinhChinhAdmin extends AppCompatActivity {
 
         setControl();
 
-//        Intent intentSp = new Intent(this, HienThiSanPham.class);
-//        layoutSP.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(intentSp);
-//            }
-//        });
+        Intent intentTask = new Intent(this, ManHinhNhiemVu.class);
+        layoutSP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intentTask);
+            }
+        });
 //
 //        Intent intentKH = new Intent(this,QLKhachHang.class);
 //        layoutKH.setOnClickListener(new View.OnClickListener() {
