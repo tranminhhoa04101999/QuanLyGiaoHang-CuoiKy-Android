@@ -1,6 +1,8 @@
 package com.example.doancuoiky.API;
 
+import com.example.doancuoiky.model.Client;
 import com.example.doancuoiky.model.Role;
+import com.example.doancuoiky.model.Task;
 import com.example.doancuoiky.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -32,4 +34,7 @@ public interface APIService {
                         );
     @GET("roles")
     Call<ArrayList<Role>>  getRole();
+
+    @GET("tasks")
+    Call<ArrayList<Task>>  getClients();
 }
