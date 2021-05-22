@@ -66,5 +66,11 @@ public interface APIService {
     @DELETE("users/{id}")
     Call<Void> deleteUser(@Path("id") int id);
 
+    //Client
+    @DELETE("clients/{id}")
+    Call<Void> deleteClient(@Path("id") int id);
+
+    @POST("clients")
+    Call<Void> addClient(@Body Client client);
 
 }

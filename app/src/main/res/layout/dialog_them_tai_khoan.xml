@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Username"
+            android:text="Tài khoản"
             android:textColor="@color/colorBlue"
             android:textSize="20dp" />
 
@@ -55,7 +55,7 @@
             android:id="@+id/etusername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="username"
+            android:hint="tài khoản"
             android:textSize="20dp" />
 
     </LinearLayout>
@@ -68,7 +68,7 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Password"
+            android:text="Mật khẩu"
             android:textColor="@color/colorBlue"
             android:textSize="20dp" />
 
@@ -76,7 +76,7 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="password"
+            android:hint="mật khẩu"
             android:textSize="20dp" />
 
     </LinearLayout>
@@ -97,7 +97,7 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ten"
+            android:hint="tên"
             android:textSize="20dp" />
 
     </LinearLayout>
@@ -118,7 +118,7 @@
             android:id="@+id/etDiachi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="dia chi"
+            android:hint="địa chỉ"
             android:textSize="20dp" />
 
     </LinearLayout>

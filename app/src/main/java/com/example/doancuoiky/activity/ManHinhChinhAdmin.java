@@ -27,7 +27,7 @@ public class ManHinhChinhAdmin extends AppCompatActivity {
         toolbar=findViewById(R.id.toolbar_manhinhchinhadmin);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Quyền Admin");
+        getSupportActionBar().setTitle("Quản lý giao hàng");
 
         setControl();
 
@@ -47,31 +47,21 @@ public class ManHinhChinhAdmin extends AppCompatActivity {
             }
         });
 
-//        Intent intentDDH = new Intent(this,QLDonDatHang.class);
-//        layoutDDH.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(intentDDH);
-//            }
-//        });
-//
-//        Intent intentTK = new Intent(this,HienThiTopSanPham.class);
-//        layoutTK.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(intentTK);
-//            }
-//        });
-//
-//        tvInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Dialog infoDialog = new Dialog(TrangChu.this);
-//                infoDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                infoDialog.setContentView(R.layout.dialog_thong_tin);
-//                infoDialog.show();
-//            }
-//        });
+        Intent intentKH = new Intent(this,ManHinhChinhKhachHang.class);
+        layoutKH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intentKH);
+            }
+        });
+        Intent intentTk = new Intent(this, ThongKe.class);
+        layoutTK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intentTk);
+            }
+        });
+
 
     }
     private void setControl() {

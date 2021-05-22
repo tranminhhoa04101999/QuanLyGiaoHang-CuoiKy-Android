@@ -56,7 +56,6 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
     }
 
 
-
     private void getDataTask() {
         APIService.apiService.getTasks().enqueue(new Callback<ArrayList<Task>>() {
             @Override
@@ -159,7 +158,7 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
                     addTask(task, client.getClientid());
 //                    Toast.makeText(ManHinhNhiemVu.this, "Thêm thành công!" + client.toString(), Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
-                    getDataTask();
+
                 }
             }
         });
@@ -172,7 +171,7 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(ManHinhChinhNhiemVu.this, "Thêm Mới Thành Công", Toast.LENGTH_SHORT).show();
-
+                    getDataTask();
                 }
 
             }
@@ -189,7 +188,7 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(ManHinhChinhNhiemVu.this, "Update task Thành Công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManHinhChinhNhiemVu.this, "Update Task Thành Công", Toast.LENGTH_SHORT).show();
                     getDataTask();
                 }
 
@@ -208,6 +207,7 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(ManHinhChinhNhiemVu.this, "Xoá Thành Công", Toast.LENGTH_SHORT).show();
+                    getDataTask();
                 }
             }
 

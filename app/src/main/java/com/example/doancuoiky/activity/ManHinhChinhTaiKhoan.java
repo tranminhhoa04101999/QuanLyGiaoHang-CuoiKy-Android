@@ -138,20 +138,20 @@ public class ManHinhChinhTaiKhoan extends AppCompatActivity {
                 String password = etPassword.getText().toString().trim();
                 String name = etTen.getText().toString().trim();
                 String address = etDiaChi.getText().toString().trim();
-                if (etUsername.equals("")) {
+                if (username.equals("")) {
                     Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập username!", Toast.LENGTH_SHORT).show();
                     etUsername.requestFocus();
-                } else if (etPassword.equals("")) {
+                } else if (password.equals("")) {
                     Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập password!", Toast.LENGTH_SHORT).show();
                     etPassword.requestFocus();
 
                 }
-                else if (etTen.equals("")) {
+                else if (name.equals("")) {
                     Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập tên!", Toast.LENGTH_SHORT).show();
                     etTen.requestFocus();
 
                 }
-                else if (etDiaChi.equals("")) {
+                else if (address.equals("")) {
                     Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập địa chỉ!", Toast.LENGTH_SHORT).show();
                     etDiaChi.requestFocus();
 

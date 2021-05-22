@@ -79,7 +79,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hoá Đơn"
+                android:text="Tài khoản"
                 android:textStyle="italic" />
         </LinearLayout>
     </LinearLayout>
@@ -112,7 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tài khoản"
+                android:text="Khách hàng"
                 android:textStyle="italic" />
         </LinearLayout>
 

@@ -17,12 +17,12 @@
             android:id="@+id/tvUsername"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
+            android:layout_weight="2"
             android:gravity="left"
             android:paddingRight="2px"
             android:text="Uname"
             android:textColor="#000000"
-            android:textSize="12dp" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tvPassword"
@@ -33,30 +33,30 @@
             android:paddingRight="2px"
             android:text="Pword"
             android:textColor="#000000"
-            android:textSize="12dp" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tvTenUser"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.75"
+            android:layout_weight="2.5"
             android:gravity="left"
             android:paddingRight="2px"
             android:text="Ten"
             android:textColor="#000000"
-            android:textSize="12dp" />
+            android:textSize="16dp" />
         />
 
         <TextView
             android:id="@+id/tvDiaChi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.75"
+            android:layout_weight="2.5"
             android:gravity="left"
             android:paddingRight="2px"
             android:text="Dia chi"
             android:textColor="#000000"
-            android:textSize="12dp" />
+            android:textSize="16dp" />
         />
         <TextView
             android:id="@+id/tvRole"
@@ -67,7 +67,7 @@
             android:paddingRight="2px"
             android:text="Role"
             android:textColor="#000000"
-            android:textSize="12dp" />
+            android:textSize="16dp" />
         />
 
 
