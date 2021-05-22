@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.ManHinhChinhAdmin">
+<<<<<<< Updated upstream
+=======
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_manhinhchinhadmin"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_cyan"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+>>>>>>> Stashed changes
 
     <FrameLayout
         android:id="@+id/root_contrainer"

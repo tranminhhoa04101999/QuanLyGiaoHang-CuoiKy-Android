@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +12,9 @@ import android.widget.Toast;
 
 import com.example.doancuoiky.API.APIService;
 import com.example.doancuoiky.R;
+import com.example.doancuoiky.model.Client;
 import com.example.doancuoiky.model.Role;
+import com.example.doancuoiky.model.Task;
 import com.example.doancuoiky.model.User;
 
 import java.util.ArrayList;
@@ -25,7 +28,9 @@ public class Login extends AppCompatActivity {
     EditText edt_username,edt_password;
     Button btn_dangnhap;
     ArrayList<Role> roles;
+    ArrayList<Task> taskArrayList;
     User mUser;
+    Task mTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +52,15 @@ public class Login extends AppCompatActivity {
                 String username = edt_username.getText().toString();
                 String password = edt_password.getText().toString();
 
-                clickCallApi_login(username,password);
+                //clickCallApi_login(username,password);
+                 //check(taskArrayList);
+                //Toast.makeText(Login.this, taskArrayList.get(0).toString(), Toast.LENGTH_SHORT).show();
+
+//                Task task = new Task(0,"2021-06-06","2021-06-06",false,false,false,null);
+//                addTask(task,1);
+
+                deleteTask(18);
+
             }
         });
     }
@@ -90,7 +103,42 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    public void checkRole(){
+    private void addTask(Task task,int idClient){
+        APIService.apiService.addTask(task,idClient).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(Login.this, "Thêm Mới Thành Công", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("ececeeee", t.getMessage());
+            }
+        });
+    }
+
+    private void deleteTask(int id){
+        APIService.apiService.deleteTask(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(Login.this, "Xoá Thành Công", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("ececeeee", t.getMessage());
+            }
+        });
+    }
+
+    public void getsss(){
+        Call<ArrayList<Task>> call = APIService.apiService.getTasks();
 
     }
 
