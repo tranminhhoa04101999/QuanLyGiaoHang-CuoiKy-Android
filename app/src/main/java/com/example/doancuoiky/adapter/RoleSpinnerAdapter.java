@@ -8,25 +8,25 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.doancuoiky.R;
-import com.example.doancuoiky.model.Client;
+import com.example.doancuoiky.model.Role;
 
 import java.util.List;
 
-public class ClientAdapter extends BaseAdapter {
+public class RoleSpinnerAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
-    private List<Client> clientList;
+    private List<Role> roleList;
 
-    public ClientAdapter(Context context, int layout, List<Client> clientList) {
+    public RoleSpinnerAdapter(Context context, int layout, List<Role> roleList) {
         this.context = context;
         this.layout = layout;
-        this.clientList = clientList;
+        this.roleList = roleList;
     }
 
     @Override
     public int getCount() {
-        return clientList.size();
+        return roleList.size();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ClientAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView tvCty;
+        TextView tvRole;
     }
 
     @Override
@@ -50,13 +50,13 @@ public class ClientAdapter extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(layout, null);
-            holder.tvCty = convertView.findViewById(R.id.tvClientspn);
+            holder.tvRole = convertView.findViewById(R.id.tv_role_spn);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Client client = clientList.get(position);
-        holder.tvCty.setText(client.getCompany());
+        Role role = roleList.get(position);
+        holder.tvRole.setText(role.getRolename());
 
 
         return convertView;
