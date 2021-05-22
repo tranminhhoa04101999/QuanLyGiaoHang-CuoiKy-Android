@@ -8,6 +8,10 @@ public class Client implements Serializable {
     private String phone;
     private String address;
 
+    public Client(){
+
+    }
+
     public Client(int clientid, String company, String phone, String address) {
         this.clientid = clientid;
         this.company = company;

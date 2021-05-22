@@ -40,14 +40,14 @@ public class ManHinhChinhAdmin extends AppCompatActivity {
                 startActivity(intentTask);
             }
         });
-//
-//        Intent intentKH = new Intent(this,QLKhachHang.class);
-//        layoutKH.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(intentKH);
-//            }
-//        });
+
+        Intent intentKH = new Intent(this,ManHinhChinhKhachHang.class);
+        layoutKH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intentKH);
+            }
+        });
 //
 //        Intent intentDDH = new Intent(this,QLDonDatHang.class);
 //        layoutDDH.setOnClickListener(new View.OnClickListener() {

@@ -84,6 +84,7 @@ public class TaskAdapter extends BaseAdapter {
                 Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
             }
         });
+
         holder.ivDeleteTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

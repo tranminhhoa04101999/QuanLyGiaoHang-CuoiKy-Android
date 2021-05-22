@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.doancuoiky.R;
+import com.example.doancuoiky.activity.ManHinhChinhKhachHang;
 import com.example.doancuoiky.model.Client;
 
 import java.util.List;
@@ -50,7 +51,7 @@ public class ClientAdapter extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(layout, null);
-            holder.tvCty = convertView.findViewById(R.id.tvClientspn);
+          //  holder.tvCty = convertView.findViewById(R.id.tvClientspn);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

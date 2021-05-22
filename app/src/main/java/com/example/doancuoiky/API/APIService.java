@@ -48,7 +48,13 @@ public interface APIService {
     @POST("AddTaskClient/{idClient}")
     Call<Void> addTask(@Body Task task, @Path("idClient") int idClient);
 
+    @POST("clients")
+    Call<Void> addClient(@Body Client client);
+
     @DELETE("tasks/{id}")
     Call<Void> deleteTask(@Path("id") int id);
+
+    @DELETE("clients/{id}")
+    Call<Void> deleteClient(@Path("id") int id);
 
 }
