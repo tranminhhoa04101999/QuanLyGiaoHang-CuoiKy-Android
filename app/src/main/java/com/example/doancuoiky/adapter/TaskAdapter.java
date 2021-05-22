@@ -8,21 +8,20 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.doancuoiky.R;
-import com.example.doancuoiky.activity.ManHinhNhiemVu;
+import com.example.doancuoiky.activity.ManHinhChinhNhiemVu;
 import com.example.doancuoiky.model.Task;
 
 import java.util.List;
 
 public class TaskAdapter extends BaseAdapter {
 
-    private ManHinhNhiemVu context;
+    private ManHinhChinhNhiemVu context;
     private int layout;
     private List<Task> taskList;
 
-    public TaskAdapter(ManHinhNhiemVu context, int layout, List<Task> taskList) {
+    public TaskAdapter(ManHinhChinhNhiemVu context, int layout, List<Task> taskList) {
         this.context = context;
         this.layout = layout;
         this.taskList = taskList;
@@ -80,8 +79,8 @@ public class TaskAdapter extends BaseAdapter {
         holder.ivEditTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //    context.DialogSua(task.getId(),task.getTen(),task.getDiachi(),task.getPhone());
-                Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
+                context.DialogSua(task);
+               // Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
             }
         });
         holder.ivDeleteTask.setOnClickListener(new View.OnClickListener() {

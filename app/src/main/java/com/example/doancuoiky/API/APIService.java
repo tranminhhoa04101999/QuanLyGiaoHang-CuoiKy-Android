@@ -34,21 +34,43 @@ public interface APIService {
 
     @GET("login")
     Call<ArrayList<User>> getUser(@Query("username") String username,
-                                 @Query("password") String password
-                        );
+                                  @Query("password") String password
+    );
+
     @GET("roles")
-    Call<ArrayList<Role>>  getRole();
+    Call<ArrayList<Role>> getRoles();
 
     @GET("tasks")
-    Call<ArrayList<Task>>  getTasks();
+    Call<ArrayList<Task>> getTasks();
 
     @GET("clients")
-    Call<ArrayList<Client>>  getClients();
+    Call<ArrayList<Client>> getClients();
 
+    @GET("users")
+    Call<ArrayList<User>> getUsers();
+
+    //Task
     @POST("AddTaskClient/{idClient}")
     Call<Void> addTask(@Body Task task, @Path("idClient") int idClient);
 
     @DELETE("tasks/{id}")
     Call<Void> deleteTask(@Path("id") int id);
+
+    @POST("UpdateTaskClient/{idClient}")
+    Call<Void> UpdateTask(@Body Task task, @Path("idClient") int idClient);
+
+    // User
+    @POST("AddUser/{idRole}")
+    Call<Void> addUser(@Body User user, @Path("idRole") int idRole);
+
+    @DELETE("users/{id}")
+    Call<Void> deleteUser(@Path("id") int id);
+
+    //Client
+    @DELETE("clients/{id}")
+    Call<Void> deleteClient(@Path("id") int id);
+
+    @POST("clients")
+    Call<Void> addClient(@Body Client client);
 
 }

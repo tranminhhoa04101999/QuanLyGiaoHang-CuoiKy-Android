@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 android:id="@+id/dsnhiemvu"
-    tools:context=".activity.ManHinhNhiemVu">
+    tools:context=".activity.ManHinhChinhNhiemVu">
 
     <TextView
         android:layout_width="match_parent"

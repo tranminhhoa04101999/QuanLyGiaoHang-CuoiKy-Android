@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.ManHinhChinhAdmin">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_manhinhchinhadmin"
         android:layout_width="match_parent"
@@ -13,7 +14,20 @@
         android:background="@color/color_cyan"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <LinearLayout
+        android:paddingTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/deliverybike" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +57,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sản Phẩm"
+                android:text="Nhiệm vụ"
                 android:textStyle="italic" />
         </LinearLayout>
 
@@ -65,7 +79,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hoá Đơn"
+                android:text="Tài khoản"
                 android:textStyle="italic" />
         </LinearLayout>
     </LinearLayout>
@@ -98,7 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Khách Hàng"
+                android:text="Khách hàng"
                 android:textStyle="italic" />
         </LinearLayout>
 
@@ -125,19 +139,19 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center">
-        <TextView
-            android:id="@+id/tvInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nhóm 26"
-            android:textColor="#00BCD4"
-            android:textStyle="bold"
-            android:textSize="30dp"/>
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:gravity="center">-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/tvInfo"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Nhóm 26"-->
+    <!--            android:textColor="#00BCD4"-->
+    <!--            android:textStyle="bold"-->
+    <!--            android:textSize="30dp"/>-->
 
-    </LinearLayout>
+    <!--    </LinearLayout>-->
 
 </LinearLayout>
