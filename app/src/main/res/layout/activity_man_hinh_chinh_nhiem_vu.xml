@@ -37,7 +37,7 @@ android:id="@+id/dsnhiemvu"
                 android:id="@+id/tvClient"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:gravity="left"
                 android:paddingRight="2px"
                 android:text="Khách hàng"
@@ -84,14 +84,14 @@ android:id="@+id/dsnhiemvu"
                 android:textColor="#000000"
                 android:textSize="9sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Cancel"
-                android:textColor="#000000"
-                android:textSize="9sp" />
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Cancel"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="9sp" />-->
 
 
         </LinearLayout>
