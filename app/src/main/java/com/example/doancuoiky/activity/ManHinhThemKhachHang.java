@@ -117,7 +117,6 @@ public class ManHinhThemKhachHang extends AppCompatActivity {
                     client.setUsername(username);
 
                     addClient(client);
-                    Toast.makeText(ManHinhThemKhachHang.this, "Thêm Mới Thành Công", Toast.LENGTH_SHORT).show();
                     finish();
 //                    Toast.makeText(ManHinhNhiemVu.this, "Thêm thành công!" + client.toString(), Toast.LENGTH_SHORT).show();
                 } else {
@@ -151,8 +150,6 @@ public class ManHinhThemKhachHang extends AppCompatActivity {
                     client.setUsername(username);
 
                     addClient(client);
-//                    Toast.makeText(ManHinhNhiemVu.this, "Thêm thành công!" + client.toString(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(ManHinhThemKhachHang.this, "Cập Nhật Thành Công", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
@@ -164,13 +161,13 @@ public class ManHinhThemKhachHang extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-//                    Toast.makeText(ManHinhThemKhachHang.this, "Thêm Mới Thành Công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManHinhThemKhachHang.this, "Thành Công", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.d("ececeeee", t.getMessage());
+                Toast.makeText(ManHinhThemKhachHang.this, "Thất bại: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

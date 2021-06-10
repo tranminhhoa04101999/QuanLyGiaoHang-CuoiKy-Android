@@ -1,19 +1,14 @@
 package com.example.doancuoiky.activity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,21 +28,14 @@ import retrofit2.Response;
 
 public class ManHinhChinhKhachHang extends AppCompatActivity {
     ListView lvClient;
-    Spinner spnKH;
-    //    ArrayList<Task> taskArrayList;
-    // ClientAdapter taskAdapter;
     KhachHangAdapter khachHangAdapter;
-    ArrayList<Client> clients;
-    Client client = new Client();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_chinh_khach_hang);
+
         lvClient = findViewById(R.id.lvClient);
-//        taskArrayList = new ArrayList<>();
-//        taskAdapter = new TaskAdapter(this, R.layout.dong_nhiem_vu, taskArrayList);
-//        lvTask.setAdapter(taskAdapter);
         getDataClient();
     }
 
@@ -78,17 +66,30 @@ public class ManHinhChinhKhachHang extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void deleteClient(int id) {
+    private void deleteClient(int id, String username) {
         APIService.apiService.deleteClient(id).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(ManHinhChinhKhachHang.this, "Xoá Thành Công", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.d("ececeeee", t.getMessage());
+                Toast.makeText(ManHinhChinhKhachHang.this, "That bai:\n" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        APIService.apiService.deleteUserUsername(username).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ManHinhChinhKhachHang.this, "Thành Công", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(ManHinhChinhKhachHang.this, "Thất bại:\n" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -98,12 +99,11 @@ public class ManHinhChinhKhachHang extends AppCompatActivity {
             @Override
             public void onResponse(Call<ArrayList<Client>> call, Response<ArrayList<Client>> response) {
                 ArrayList<Client> clientArrayList = response.body();
-
                 khachHangAdapter = new KhachHangAdapter(ManHinhChinhKhachHang.this, R.layout.dong_khach_hang, clientArrayList);
-                // spnKH.setAdapter(clientAdapter);
                 lvClient.setAdapter(khachHangAdapter);
                 khachHangAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onFailure(Call<ArrayList<Client>> call, Throwable t) {
                 Toast.makeText(ManHinhChinhKhachHang.this, "Call API that bai", Toast.LENGTH_SHORT).show();
@@ -123,19 +123,18 @@ public class ManHinhChinhKhachHang extends AppCompatActivity {
         Intent intent = new Intent(ManHinhChinhKhachHang.this, ManHinhThemKhachHang.class);
         Bundle bundle = new Bundle();
         bundle.putString("action", "sua");
-        bundle.putSerializable("khachhang",khachHang);
+        bundle.putSerializable("khachhang", khachHang);
         intent.putExtra("bundle", bundle);
         startActivityForResult(intent, 200);
     }
 
-    public void DialogXoa(int id) {
+    public void DialogXoa(Client client) {
         AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
         dialogXoa.setMessage("Bạn có muốn xóa client: '" + client.getCompany() + "' ?");
         dialogXoa.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                deleteClient(id);
-//                Toast.makeText(ManHinhNhiemVu.this, "Xóa thành công!", Toast.LENGTH_SHORT).show();
+                deleteClient(client.getClientid(), client.getUsername());
                 dialog.dismiss();
                 try {
                     Thread.sleep(50);

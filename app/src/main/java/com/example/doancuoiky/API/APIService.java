@@ -69,9 +69,15 @@ public interface APIService {
     @DELETE("users/{id}")
     Call<Void> deleteUser(@Path("id") int id);
 
+    @POST("user/delete/{username}")
+    Call<Void> deleteUserUsername(@Path("username") String username);
+
     //Client
     @DELETE("clients/{id}")
     Call<Void> deleteClient(@Path("id") int id);
+
+    @POST("client/delete/{username}")
+    Call<Void> deleteClientUsername(@Path("username") String username);
 
     @POST("clients")
     Call<Void> addClient(@Body Client client);
