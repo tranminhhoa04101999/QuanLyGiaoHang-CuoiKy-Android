@@ -7,12 +7,14 @@ public class Client implements Serializable {
     private String company;
     private String phone;
     private String address;
+    private String username;
 
-    public Client(int clientid, String company, String phone, String address) {
+    public Client(int clientid, String company, String phone, String address, String username) {
         this.clientid = clientid;
         this.company = company;
         this.phone = phone;
         this.address = address;
+        this.username = username;
     }
 
     public Client() {
@@ -50,6 +52,14 @@ public class Client implements Serializable {
         this.address = address;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -57,6 +67,7 @@ public class Client implements Serializable {
                 ", company='" + company + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

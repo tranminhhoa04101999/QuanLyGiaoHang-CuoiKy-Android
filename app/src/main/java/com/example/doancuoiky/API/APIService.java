@@ -27,7 +27,7 @@ public interface APIService {
             .create();
 
     APIService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.8:8080/")
+            .baseUrl("http://192.168.1.6:8080/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APIService.class);
@@ -60,6 +60,9 @@ public interface APIService {
     Call<Void> UpdateTask(@Body Task task, @Path("idClient") int idClient);
 
     // User
+    @GET("user/username/{username}")
+    Call<ArrayList<User>> getUserKH(@Path("username") String username);
+
     @POST("AddUser/{idRole}")
     Call<Void> addUser(@Body User user, @Path("idRole") int idRole);
 

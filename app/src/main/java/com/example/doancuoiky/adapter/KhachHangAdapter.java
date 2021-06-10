@@ -75,8 +75,8 @@ public class KhachHangAdapter extends BaseAdapter {
         holder.ivEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogSua(khachHang.getClientid(),khachHang.getCompany(),khachHang.getAddress(),khachHang.getPhone());
-                Toast.makeText(context, "sua " + khachHang.getCompany(), Toast.LENGTH_SHORT).show();
+                context.suaKhachHang(khachHang);
+//                Toast.makeText(context, "sua " + khachHang.getCompany(), Toast.LENGTH_SHORT).show();
             }
         });
 

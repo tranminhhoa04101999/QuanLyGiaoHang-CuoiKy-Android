@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#FFFFFF"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:paddingTop="40dp"
+    tools:context=".activity.ManHinhThemKhachHang">
+
+    <TextView
+        android:id="@+id/tvTieuDeThemKhachHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Thêm khách hàng"
+        android:textColor="#0080D6"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etThemUsernameKhachHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:hint="Tài khoản" />
+    <EditText
+        android:id="@+id/etThemPasswordKhachHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword" />
+    <EditText
+        android:id="@+id/etThemTenKhachHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:hint="Tên khách hàng"/>
+    <EditText
+        android:id="@+id/etThemSDTKhachHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:hint="SDT khách hàng"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/etThemDiachiKhachHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:hint="Địa chỉ khách hàng" />
+
+    <Button
+        android:id="@+id/btnThem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btngreen"
+        android:text="Thêm"
+        android:textColor="@color/black"
+        app:backgroundTint="@null" />
+
+    <Button
+        android:id="@+id/btnHuy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/btnred"
+        android:text="Hủy"
+        android:textColor="@color/black"
+        app:backgroundTint="@null" />
+
+</LinearLayout>
