@@ -1,6 +1,7 @@
 package com.example.doancuoiky.adapter;
 
 import android.content.Context;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.doancuoiky.R;
 import com.example.doancuoiky.activity.ManHinhChinhNhiemVu;
@@ -46,6 +48,7 @@ public class TaskAdapter extends BaseAdapter {
         TextView tvClient, tvPickup, tvDropoff;
         CheckBox cbApprove, cbPublic, cbCancel;
         ImageView ivDeleteTask, ivEditTask;
+        View layout_dong_nv;
     }
 
     @Override
@@ -60,9 +63,10 @@ public class TaskAdapter extends BaseAdapter {
             holder.tvDropoff = convertView.findViewById(R.id.tvDropoff);
             holder.cbApprove = convertView.findViewById(R.id.cbApprove);
             holder.cbPublic = convertView.findViewById(R.id.cbPublic);
-            holder.cbCancel = convertView.findViewById(R.id.cbCancel);
+//            holder.cbCancel = convertView.findViewById(R.id.cbCancel);
             holder.ivEditTask = convertView.findViewById(R.id.ivEditTask);
             holder.ivDeleteTask = convertView.findViewById(R.id.ivDeleteTask);
+            holder.layout_dong_nv=convertView.findViewById(R.id.layout_dong_nv);
 
             convertView.setTag(holder);
         } else {
@@ -74,7 +78,7 @@ public class TaskAdapter extends BaseAdapter {
         holder.tvDropoff.setText(task.getDropoff());
         holder.cbApprove.setChecked(task.getApprove());
         holder.cbPublic.setChecked(task.getTaskpublic());
-        holder.cbCancel.setChecked(task.getCancel());
+//        holder.cbCancel.setChecked(task.getCancel());
         //bat su kien xoa sua
         holder.ivEditTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +93,14 @@ public class TaskAdapter extends BaseAdapter {
                 context.DialogXoa(task.getId());
             }
         });
-
+        holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(task.getApprove()){
+                    Toast.makeText(context, "Approve", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return convertView;
     }
 }

@@ -52,7 +52,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="10dp"
-                android:src="@drawable/ic_person" />
+                android:src="@drawable/assignment" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="10dp"
-                android:src="@drawable/ic_person" />
+                android:src="@drawable/account" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="10dp"
-                android:src="@drawable/ic_person" />
+                android:src="@drawable/handshake" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -129,7 +129,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="10dp"
-                android:src="@drawable/ic_person" />
+                android:src="@drawable/analytics" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,7 @@ public class ThongKe extends AppCompatActivity {
     ArrayList<ThongKeResult> thongKeResults = new ArrayList<>();
     ThongKeAdapter thongKeAdapter;
     ArrayList<Task> tasks;
+    TextView tv_tong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class ThongKe extends AppCompatActivity {
         setContentView(R.layout.thongke);
 
         listViewthongKe = findViewById(R.id.lv_thongKe);
+        tv_tong = findViewById(R.id.txt_task);
         getTask();
         //hienthithongke(tasks);
     }
@@ -96,6 +99,7 @@ public class ThongKe extends AppCompatActivity {
 //            Log.e("SELECT * FROM :",MASP + "  "+ tensp + "  "+xuatxu+"  "+dongia+"  "+hinhanh);
         thongKeAdapter = new ThongKeAdapter(this, R.layout.tung_thongke,thongKeResults);
         listViewthongKe.setAdapter(thongKeAdapter);
+        tv_tong.setText(String.valueOf(tasks.size()));
     }
 
     public void getTask(){
