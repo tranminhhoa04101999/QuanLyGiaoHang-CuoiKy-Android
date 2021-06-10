@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Biểu đồ"
+        android:id="@+id/menu_option0"
+        app:showAsAction="always"/>
+    <item android:title="Danh sách"
+        android:id="@+id/menu_option1"
+        app:showAsAction="always"/>
+</menu>

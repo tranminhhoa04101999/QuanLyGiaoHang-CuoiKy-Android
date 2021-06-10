@@ -3,11 +3,9 @@ package com.example.doancuoiky.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,7 +30,13 @@ public class ManHinhChinhAdmin extends AppCompatActivity {
         getSupportActionBar().setTitle("Quyền Admin");
 
         setControl();
-
+        Intent intentTk = new Intent(this, ThongKe.class);
+        layoutTK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intentTk);
+            }
+        });
 //        Intent intentSp = new Intent(this, HienThiSanPham.class);
 //        layoutSP.setOnClickListener(new View.OnClickListener() {
 //            @Override
