@@ -15,6 +15,9 @@ public class Client implements Serializable {
         this.address = address;
     }
 
+    public Client() {
+    }
+
     public int getClientid() {
         return clientid;
     }

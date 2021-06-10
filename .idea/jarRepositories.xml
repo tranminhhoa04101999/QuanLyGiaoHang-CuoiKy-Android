@@ -24,11 +24,6 @@
     <remote-repository>
       <option name="id" value="maven" />
       <option name="name" value="maven" />
-      <option name="url" value="http://jitback.io" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven" />
-      <option name="name" value="maven" />
       <option name="url" value="https://jitpack.io" />
     </remote-repository>
   </component>

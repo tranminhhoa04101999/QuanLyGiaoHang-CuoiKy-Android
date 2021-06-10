@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/dskhachhang"
-    tools:context=".activity.ManHinhChinhKhachHang">
+android:id="@+id/dsnhiemvu"
+    tools:context=".activity.ManHinhChinhNhiemVu">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:text="Danh sách khách hàng"
+        android:text="Danh sách nhiệm vụ"
         android:textColor="#0000FF"
         android:textSize="25dp" />
 
@@ -23,7 +23,6 @@
         android:orientation="horizontal"
         android:paddingLeft="2dp"
         android:paddingRight="2dp"
-        android:layout_marginLeft="15dp"
         android:weightSum="10">
 
         <LinearLayout
@@ -35,37 +34,64 @@
             android:weightSum="10">
 
             <TextView
-                android:id="@+id/tvCompany"
+                android:id="@+id/tvClient"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:gravity="left"
                 android:paddingRight="2px"
-                android:layout_marginLeft="5dp"
                 android:text="Khách hàng"
                 android:textColor="#000000"
                 android:textSize="12dp" />
 
-
-
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:gravity="center"
-                android:text="Số điện thoại"
+                android:gravity="left"
+                android:paddingRight="2px"
+                android:text="Ngày nhận"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="12dp" />
+            />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:paddingRight="2px"
+                android:text="Ngày giao"
+                android:textColor="#000000"
+                android:textSize="12dp" />
+            />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="5"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Địa chỉ"
+                android:text="Approve"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="9sp" />
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Public"
+                android:textColor="#000000"
+                android:textSize="9sp" />
+
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Cancel"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="9sp" />-->
 
 
         </LinearLayout>
@@ -78,7 +104,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/lvClient"
+        android:id="@+id/lvTask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/black"

@@ -6,13 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doancuoiky.API.APIService;
 import com.example.doancuoiky.R;
-import com.example.doancuoiky.model.Client;
+import com.example.doancuoiky.adapter.ThongKeAdapter;
 import com.example.doancuoiky.model.Task;
 import com.example.doancuoiky.model.ThongKeResult;
 
@@ -24,10 +23,10 @@ import retrofit2.Response;
 
 public class ThongKe extends AppCompatActivity {
     ListView listViewthongKe;
-    TextView textView;
     ArrayList<ThongKeResult> thongKeResults = new ArrayList<>();
     ThongKeAdapter thongKeAdapter;
     ArrayList<Task> tasks;
+    TextView tv_tong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class ThongKe extends AppCompatActivity {
         setContentView(R.layout.thongke);
 
         listViewthongKe = findViewById(R.id.lv_thongKe);
-        textView = findViewById((R.id.textOrders));
+        tv_tong = findViewById(R.id.txt_task);
         getTask();
         //hienthithongke(tasks);
     }
@@ -97,11 +96,10 @@ public class ThongKe extends AppCompatActivity {
         thongKeResults.add(new ThongKeResult("approve", approve));
         thongKeResults.add(new ThongKeResult("task public", taskpubic));
         thongKeResults.add(new ThongKeResult("cancel", cancel));
-
 //            Log.e("SELECT * FROM :",MASP + "  "+ tensp + "  "+xuatxu+"  "+dongia+"  "+hinhanh);
-        thongKeAdapter = new ThongKeAdapter(this,R.layout.tung_thongke,thongKeResults);
+        thongKeAdapter = new ThongKeAdapter(this, R.layout.tung_thongke,thongKeResults);
         listViewthongKe.setAdapter(thongKeAdapter);
-        textView.setText( String.valueOf(tasks.size()));
+        tv_tong.setText(String.valueOf(tasks.size()));
     }
 
     public void getTask(){

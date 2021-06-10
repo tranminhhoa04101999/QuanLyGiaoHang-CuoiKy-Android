@@ -9,6 +9,9 @@ public class Task {
     private Boolean cancel;
     private Client client;
 
+    public Task() {
+    }
+
     public Task(int id, String pickup, String dropoff, Boolean approve, Boolean taskpublic, Boolean cancel, Client client) {
         this.id = id;
         this.pickup = pickup;
