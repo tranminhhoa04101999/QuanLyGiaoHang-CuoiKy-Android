@@ -46,11 +46,11 @@ public class ManHinhThemNhiemVu extends AppCompatActivity {
         getDataClient();
 
         EditText etPickup = findViewById(R.id.etPickup);
-        EditText etDropoff = findViewById(R.id.etDropoff);
-
-        CheckBox cbApprove = findViewById(R.id.cbApprovee);
-        CheckBox cbPublic = findViewById(R.id.cbPublice);
-        CheckBox cbCancel = findViewById(R.id.cbCancele);
+//        EditText etDropoff = findViewById(R.id.etDropoff);
+//
+//        CheckBox cbApprove = findViewById(R.id.cbApprovee);
+//        CheckBox cbPublic = findViewById(R.id.cbPublice);
+//        CheckBox cbCancel = findViewById(R.id.cbCancele);
 
         Button btnThem = findViewById(R.id.btnThem);
         Button btnHuy = findViewById(R.id.btnHuy);
@@ -60,10 +60,10 @@ public class ManHinhThemNhiemVu extends AppCompatActivity {
             tvTieuDe.setText("Cập nhật nhiệm vụ");
             Task oldTask = (Task) bundle.getSerializable("task");
             etPickup.setText(oldTask.getPickup());
-            etDropoff.setText(oldTask.getDropoff());
-            cbApprove.setChecked(oldTask.getApprove());
-            cbPublic.setChecked(oldTask.getTaskpublic());
-            cbCancel.setChecked(oldTask.getCancel());
+//            etDropoff.setText(oldTask.getDropoff());
+//            cbApprove.setChecked(oldTask.getApprove());
+//            cbPublic.setChecked(oldTask.getTaskpublic());
+//            cbCancel.setChecked(oldTask.getCancel());
             APIService.apiService.getClients().enqueue(new Callback<ArrayList<Client>>() {
                 @Override
                 public void onResponse(Call<ArrayList<Client>> call, Response<ArrayList<Client>> response) {
@@ -93,13 +93,13 @@ public class ManHinhThemNhiemVu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String pickupdate = etPickup.getText().toString().trim();
-                String dropoffdate = etDropoff.getText().toString().trim();
+//                String dropoffdate = etDropoff.getText().toString().trim();
                 if (pickupdate.equals("")) {
                     Toast.makeText(ManHinhThemNhiemVu.this, "Vui lòng nhập ngày!", Toast.LENGTH_SHORT).show();
                     etPickup.requestFocus();
-                } else if (dropoffdate.equals("")) {
-                    Toast.makeText(ManHinhThemNhiemVu.this, "Vui lòng nhập ngày!", Toast.LENGTH_SHORT).show();
-                    etDropoff.requestFocus();
+//                } else if (dropoffdate.equals("")) {
+//                    Toast.makeText(ManHinhThemNhiemVu.this, "Vui lòng nhập ngày!", Toast.LENGTH_SHORT).show();
+//                    etDropoff.requestFocus();
 
                 } else {
                     Client client = clients.get(spnKH.getSelectedItemPosition());
@@ -111,10 +111,10 @@ public class ManHinhThemNhiemVu extends AppCompatActivity {
                     }
                     task.setClient(null);
                     task.setPickup(pickupdate);
-                    task.setDropoff(dropoffdate);
-                    task.setApprove(cbApprove.isChecked());
-                    task.setTaskpublic(cbPublic.isChecked());
-                    task.setCancel(cbCancel.isChecked());
+//                    task.setDropoff(dropoffdate);
+//                    task.setApprove(cbApprove.isChecked());
+//                    task.setTaskpublic(cbPublic.isChecked());
+//                    task.setCancel(cbCancel.isChecked());
 
                     addTask(task, client.getClientid());
                     finish();
