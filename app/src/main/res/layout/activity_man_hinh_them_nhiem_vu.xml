@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="350dp"
-    android:layout_height="450dp"
-    android:layout_gravity="center"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_themnv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:gravity="center"
+    android:gravity="top"
     android:orientation="vertical"
-    android:id="@+id/dialog_themnv">
+    android:paddingTop="40dp"
+    tools:context=".activity.ManHinhThemNhiemVu">
 
     <TextView
-        android:id="@+id/tvTaskDialog"
+        android:id="@+id/tvTieuDeThemNhiemVu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingTop="10dp"
         android:text="Thêm nhiệm vụ"
         android:textColor="#0080D6"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp">
 
         <TextView
             android:layout_width="150dp"
@@ -42,7 +46,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp">
 
         <TextView
             android:layout_width="150dp"
@@ -63,7 +70,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp">
 
         <TextView
             android:layout_width="150dp"
@@ -86,34 +96,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Approve"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"/>
 
     <CheckBox
         android:id="@+id/cbPublice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Public"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
     <CheckBox
         android:id="@+id/cbCancele"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cancel"
-        android:textSize="18sp" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:textSize="18sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
         <Button
             android:id="@+id/btnThem"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/btngreen"
             android:text="Thêm"
             android:textColor="@color/black"
@@ -121,15 +134,15 @@
 
         <Button
             android:id="@+id/btnHuy"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="60dp"
             android:background="@drawable/btnred"
             android:text="Hủy"
             android:textColor="@color/black"
             app:backgroundTint="@null" />
-
-    </LinearLayout>
-
 
 </LinearLayout>

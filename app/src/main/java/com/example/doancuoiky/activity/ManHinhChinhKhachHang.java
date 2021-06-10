@@ -70,6 +70,11 @@ public class ManHinhChinhKhachHang extends AppCompatActivity {
         if (requestCode == 200) {
             getDataClient();
         }
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -133,7 +138,7 @@ public class ManHinhChinhKhachHang extends AppCompatActivity {
 //                Toast.makeText(ManHinhNhiemVu.this, "Xóa thành công!", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

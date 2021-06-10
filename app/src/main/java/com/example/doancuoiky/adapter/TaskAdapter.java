@@ -83,7 +83,7 @@ public class TaskAdapter extends BaseAdapter {
         holder.ivEditTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogSua(task);
+                context.suaNhiemVu(task);
                // Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
             }
         });
