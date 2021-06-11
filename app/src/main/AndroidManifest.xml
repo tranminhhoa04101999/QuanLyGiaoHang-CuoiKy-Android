@@ -12,52 +12,44 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAnCuoiKy"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.ManHinhThemPhanCong"></activity>
+        <activity android:name=".activity.ManHinhThemNhiemVu" />
+        <activity android:name=".activity.ManHinhThemKhachHang" />
         <activity android:name=".activity.ManHinhChinhKhachHang" />
         <activity android:name=".activity.ManHinhChinhTaiKhoan" />
         <activity android:name=".activity.ThongKe" />
         <activity android:name=".activity.BieuDo" />
-
         <activity
             android:name=".activity.ManHinhChinhAdmin"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
-
         </activity>
-
         <activity android:name=".activity.ManHinhChinhTaiXe">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.ManHinhChinhNhiemVu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.Login"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 

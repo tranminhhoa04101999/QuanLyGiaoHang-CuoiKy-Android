@@ -3,6 +3,7 @@ package com.example.doancuoiky.API;
 import com.example.doancuoiky.model.Client;
 import com.example.doancuoiky.model.Role;
 import com.example.doancuoiky.model.Task;
+import com.example.doancuoiky.model.TaskDetail;
 import com.example.doancuoiky.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,7 +28,7 @@ public interface APIService {
             .create();
 
     APIService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.8:8080/")
+            .baseUrl("http://192.168.1.6:8080/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APIService.class);
@@ -49,7 +50,13 @@ public interface APIService {
     @GET("users")
     Call<ArrayList<User>> getUsers();
 
+    @GET("/users/role/1")
+    Call<ArrayList<User>> getDSTaiXe();
+
     //Task
+    @GET("task/noApprove")
+    Call<ArrayList<Task>> getDSTaskChuaApprove();
+
     @POST("AddTaskClient/{idClient}")
     Call<Void> addTask(@Body Task task, @Path("idClient") int idClient);
 
@@ -60,17 +67,37 @@ public interface APIService {
     Call<Void> UpdateTask(@Body Task task, @Path("idClient") int idClient);
 
     // User
+    @GET("user/username/{username}")
+    Call<ArrayList<User>> getUserKH(@Path("username") String username);
+
     @POST("AddUser/{idRole}")
     Call<Void> addUser(@Body User user, @Path("idRole") int idRole);
 
     @DELETE("users/{id}")
     Call<Void> deleteUser(@Path("id") int id);
 
+    @POST("user/delete/{username}")
+    Call<Void> deleteUserUsername(@Path("username") String username);
+
     //Client
     @DELETE("clients/{id}")
     Call<Void> deleteClient(@Path("id") int id);
 
+    @POST("client/delete/{username}")
+    Call<Void> deleteClientUsername(@Path("username") String username);
+
     @POST("clients")
     Call<Void> addClient(@Body Client client);
+
+    //Task details
+    @GET("taskdetails")
+    Call<ArrayList<TaskDetail>> getTaskDetails();
+
+    @POST("addTaskdetails/{userid}")
+    Call<Void> addTaskDetail(@Body TaskDetail taskDetail,@Path("userid")int id);
+
+    @DELETE("taskdetails/{id}")
+    Call<Void> deleteTaskDetail(@Path("id") int id);
+
 
 }
