@@ -29,6 +29,7 @@ public class TaskAdapter extends BaseAdapter {
         this.layout = layout;
         this.taskList = taskList;
     }
+
     @Override
     public int getCount() {
         return taskList.size();
@@ -66,7 +67,7 @@ public class TaskAdapter extends BaseAdapter {
 //            holder.cbCancel = convertView.findViewById(R.id.cbCancel);
             holder.ivEditTask = convertView.findViewById(R.id.ivEditTask);
             holder.ivDeleteTask = convertView.findViewById(R.id.ivDeleteTask);
-            holder.layout_dong_nv=convertView.findViewById(R.id.layout_dong_nv);
+            holder.layout_dong_nv = convertView.findViewById(R.id.layout_dong_nv);
 
             convertView.setTag(holder);
         } else {
@@ -84,9 +85,10 @@ public class TaskAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 context.suaNhiemVu(task);
-               // Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
             }
         });
+        if (task.getApprove()) holder.ivDeleteTask.setVisibility(View.INVISIBLE);
         holder.ivDeleteTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,8 +98,10 @@ public class TaskAdapter extends BaseAdapter {
         holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!task.getApprove()){
+                if (!task.getApprove()) {
                     context.themPhanCong(task);
+                } else {
+                    context.suaPhanCong(task);
                 }
             }
         });

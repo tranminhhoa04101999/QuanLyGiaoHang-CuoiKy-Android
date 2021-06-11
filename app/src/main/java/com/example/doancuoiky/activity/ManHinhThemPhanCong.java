@@ -31,8 +31,10 @@ import retrofit2.Response;
 
 public class ManHinhThemPhanCong extends AppCompatActivity {
     Spinner spnTaixe;
+    ArrayList<TaskDetail> taskDetails;
     TaiXeAdapter taiXeAdapter;
     ArrayList<User> dSTaiXe;
+    TaskDetail taskDetail;
     User taiXe;
 
     @Override
@@ -67,20 +69,6 @@ public class ManHinhThemPhanCong extends AppCompatActivity {
         Boolean isThem = bundle.getString("action").equals("them");
         Task task = (Task) bundle.getSerializable("task");
 
-//        APIService.apiService.getDSTaiXe().enqueue(new Callback<ArrayList<User>>() {
-//            @Override
-//            public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
-//                dSTaiXe = response.body();
-//                taiXeAdapter = new TaiXeAdapter(ManHinhThemPhanCong.this, R.layout.dong_tai_xe, dSTaiXe);
-//                spnTaixe.setAdapter(taiXeAdapter);
-//                taiXeAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ArrayList<User>> call, Throwable t) {
-//
-//            }
-//        });
         TextView tvPickup = findViewById(R.id.tvPCPickup);
         tvPickup.setText(task.getPickup());
         TextView tvTieuDe = findViewById(R.id.tvTieuDeThemPhanCong);
@@ -91,6 +79,63 @@ public class ManHinhThemPhanCong extends AppCompatActivity {
 
         Button btnThem = findViewById(R.id.btnThem);
         Button btnHuy = findViewById(R.id.btnHuy);
+        Button btnXoa = findViewById(R.id.btnXoaPhanCong);
+
+        if (isThem) {
+            tvTieuDe.setText("Thêm Phân Công");
+            btnXoa.setVisibility(View.GONE);
+        } else {
+
+            tvTieuDe.setText("Chỉnh Sửa Phân Công");
+            APIService.apiService.getTaskDetails().enqueue(new Callback<ArrayList<TaskDetail>>() {
+                @Override
+                public void onResponse(Call<ArrayList<TaskDetail>> call, Response<ArrayList<TaskDetail>> response) {
+                    ArrayList<TaskDetail> taskDetails = response.body();
+                    for (int i = 0; i < taskDetails.size(); i++) {
+                        if (taskDetails.get(i).getTask().getId() == task.getId()) {
+                            taskDetail = taskDetails.get(i);
+                            etGhiChu.setText(taskDetail.getTask_note());
+//                            Log.e("a", etGhiChu.getText().toString());
+                            APIService.apiService.getDSTaiXe().enqueue(new Callback<ArrayList<User>>() {
+                                @Override
+                                public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
+                                    dSTaiXe = response.body();
+                                    for (int i = 0; i < dSTaiXe.size(); i++) {
+                                        if (dSTaiXe.get(i).getId() == taskDetail.getUser().getId())
+                                            spnTaixe.setSelection(i);
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<ArrayList<User>> call, Throwable t) {
+
+                                }
+                            });
+//                            Log.e("aaaaa", "Thanh cong " + taskDetail.toString());
+
+                            break;
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<TaskDetail>> call, Throwable t) {
+                    Log.e("aaaaa", t.getMessage());
+                }
+            });
+
+            btnXoa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteTaskDetail(taskDetail.getId());
+                    task.setApprove(false);
+                    updateTask(task, task.getClient().getClientid());
+                    finish();
+                }
+            });
+        }
 
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,15 +151,14 @@ public class ManHinhThemPhanCong extends AppCompatActivity {
 
                 taiXe = dSTaiXe.get(spnTaixe.getSelectedItemPosition());
 
-                TaskDetail taskDetail = new TaskDetail();
                 if (isThem) {
+                    taskDetail = new TaskDetail();
                     taskDetail.setId(0);
                     taskDetail.setChat("");
-                    taskDetail.setDriver(taiXe);
+                    taskDetail.setUser(taiXe);
                 } else {
-                    taskDetail = (TaskDetail) bundle.getSerializable("taskdetail");
-                    if (taskDetail.getDriver().getId() != taiXe.getId()) {
-                        taskDetail.setDriver(taiXe);
+                    if (taskDetail.getUser().getId() != taiXe.getId()) {
+                        taskDetail.setUser(taiXe);
                         taskDetail.setChat("");
                     }
                 }
@@ -127,10 +171,12 @@ public class ManHinhThemPhanCong extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 
     void addTaskDetail(TaskDetail taskDetail) {
-        APIService.apiService.addTaskDetail(taskDetail, taskDetail.getDriver().getId()).enqueue(new Callback<Void>() {
+        APIService.apiService.addTaskDetail(taskDetail, taskDetail.getUser().getId()).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
@@ -157,6 +203,22 @@ public class ManHinhThemPhanCong extends AppCompatActivity {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.d("ececeeee", t.getMessage());
+            }
+        });
+    }
+
+    private void deleteTaskDetail(int id) {
+        APIService.apiService.deleteTaskDetail(id).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ManHinhThemPhanCong.this, "Xóa thành công!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(ManHinhThemPhanCong.this, "That bai: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

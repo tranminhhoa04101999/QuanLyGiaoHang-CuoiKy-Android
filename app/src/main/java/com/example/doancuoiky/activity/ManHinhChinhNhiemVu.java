@@ -18,6 +18,7 @@ import com.example.doancuoiky.API.APIService;
 import com.example.doancuoiky.R;
 import com.example.doancuoiky.adapter.TaskAdapter;
 import com.example.doancuoiky.model.Task;
+import com.example.doancuoiky.model.TaskDetail;
 
 import java.util.ArrayList;
 
@@ -65,8 +66,6 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.themNhiemVu) {
             themNhiemVu();
-        } else if (item.getItemId() == R.id.themPhanCong) {
-            xemPhanCong();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -75,6 +74,15 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
         Intent intent = new Intent(ManHinhChinhNhiemVu.this, ManHinhThemNhiemVu.class);
         Bundle bundle = new Bundle();
         bundle.putString("action", "them");
+        intent.putExtra("bundle", bundle);
+        startActivityForResult(intent, 200);
+    }
+
+    public void suaNhiemVu(Task task) {
+        Intent intent = new Intent(ManHinhChinhNhiemVu.this, ManHinhThemNhiemVu.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("action", "sua");
+        bundle.putSerializable("task", task);
         intent.putExtra("bundle", bundle);
         startActivityForResult(intent, 200);
     }
@@ -88,16 +96,8 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
         startActivityForResult(intent, 200);
     }
 
-    private void xemPhanCong() {
-//        Intent intent = new Intent(ManHinhChinhNhiemVu.this, ManHinhChinhPhanCong.class);
-////        Bundle bundle = new Bundle();
-////        bundle.putString("action", "them");
-////        intent.putExtra("bundle", bundle);
-//        startActivityForResult(intent, 200);
-    }
-
-    public void suaNhiemVu(Task task) {
-        Intent intent = new Intent(ManHinhChinhNhiemVu.this, ManHinhThemNhiemVu.class);
+    public void suaPhanCong(Task task) {
+        Intent intent = new Intent(ManHinhChinhNhiemVu.this, ManHinhThemPhanCong.class);
         Bundle bundle = new Bundle();
         bundle.putString("action", "sua");
         bundle.putSerializable("task", task);
