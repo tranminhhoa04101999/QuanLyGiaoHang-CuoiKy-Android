@@ -44,8 +44,8 @@ public class TaiXeTaskAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView tvClient, tvPickup, tvDropoff;
-        CheckBox cbApprove, cbPublic, cbCancel;
+        TextView tvClient, tvPickup;
+        CheckBox cbApprove;
         ImageView ivDeleteTask, ivEditTask;
         View layout_dong_nv;
     }
@@ -59,9 +59,7 @@ public class TaiXeTaskAdapter extends BaseAdapter {
             convertView = inflater.inflate(layout, null);
             holder.tvClient = convertView.findViewById(R.id.tvClient);
             holder.tvPickup = convertView.findViewById(R.id.tvPickup);
-            holder.tvDropoff = convertView.findViewById(R.id.tvDropoff);
             holder.cbApprove = convertView.findViewById(R.id.cbApprove);
-            holder.cbPublic = convertView.findViewById(R.id.cbPublic);
             holder.ivEditTask = convertView.findViewById(R.id.ivEditTask);
             holder.ivDeleteTask = convertView.findViewById(R.id.ivDeleteTask);
             holder.layout_dong_nv=convertView.findViewById(R.id.layout_dong_nv);
@@ -74,24 +72,9 @@ public class TaiXeTaskAdapter extends BaseAdapter {
         Task task = taskList.get(position);
         holder.tvClient.setText(task.getClient().getCompany());
         holder.tvPickup.setText(task.getPickup());
-        holder.tvDropoff.setText(task.getDropoff());
         holder.cbApprove.setChecked(task.getApprove());
-        holder.cbPublic.setChecked(task.getTaskpublic());
-//        holder.cbCancel.setChecked(task.getCancel());
         //bat su kien xoa sua
-        holder.ivEditTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.DialogSua(task);
-               // Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        holder.ivDeleteTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.DialogXoa(task.getId());
-            }
-        });
+
         holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
