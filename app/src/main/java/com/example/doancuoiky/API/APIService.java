@@ -90,6 +90,10 @@ public interface APIService {
     Call<Void> addClient(@Body Client client);
 
     //Task details
+
+    @GET("taskdetail/{idtaixe}")
+    Call<ArrayList<TaskDetail>> getTaskdetailByIdtaixe(@Path("idtaixe") int idtaixe);
+    
     @GET("taskdetails")
     Call<ArrayList<TaskDetail>> getTaskDetails();
 

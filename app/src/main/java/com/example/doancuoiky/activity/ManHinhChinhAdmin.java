@@ -62,7 +62,6 @@ public class ManHinhChinhAdmin extends AppCompatActivity {
             }
         });
 
-
     }
     private void setControl() {
         layoutTask = findViewById(R.id.layoutsanpham);
