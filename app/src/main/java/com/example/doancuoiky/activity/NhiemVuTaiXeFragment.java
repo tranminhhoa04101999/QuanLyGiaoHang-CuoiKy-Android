@@ -3,6 +3,7 @@ package com.example.doancuoiky.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.example.doancuoiky.model.Client;
 import com.example.doancuoiky.model.Task;
 import com.example.doancuoiky.model.TaskDetail;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class NhiemVuTaiXeFragment extends Fragment {
     ClientSpinnerAdapter clientSpinnerAdapter;
     ArrayList<Client> clients;
 //    Task task = new Task();
+
 
     @Nullable
     @Override
@@ -105,6 +108,8 @@ public class NhiemVuTaiXeFragment extends Fragment {
 
                 dialog.setTitle("Add an Expense");
                 dialog.setCancelable(true);
+                Button btnDinhVi=dialog.findViewById(R.id.btnXemMap);
+                btnDinhVi.setVisibility(View.GONE);
                 Button btnChat=dialog.findViewById(R.id.btnChat);
                 btnChat.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -99,6 +99,7 @@ public class XemTaskKhachHangFragment extends Fragment {
                 TextView tvGhiChu = dialog.findViewById(R.id.tvGhiChu);
                 tvGhiChu.setText(response.body().get(0).getTask_note());
                 Button btnChat = dialog.findViewById(R.id.btnChat);
+                Button btnXemMap = dialog.findViewById(R.id.btnXemMap);
 
                 dialog.setTitle("Add an Expense");
                 dialog.setCancelable(true);
@@ -112,7 +113,15 @@ public class XemTaskKhachHangFragment extends Fragment {
                         dialog.dismiss();
                     }
                 });
-
+                btnXemMap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), ManHinhMapTaiXe.class);
+                        intent.putExtra("taskid",id);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                });
                 dialog.show();
             }
 

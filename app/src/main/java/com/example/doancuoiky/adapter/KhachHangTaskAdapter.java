@@ -73,6 +73,8 @@ public class KhachHangTaskAdapter extends BaseAdapter {
         holder.tvClient.setText(task.getClient().getCompany());
         holder.tvPickup.setText(task.getPickup());
         holder.cbApprove.setChecked(task.getApprove());
+        holder.ivDeleteTask.setVisibility(View.INVISIBLE);
+        holder.ivEditTask.setVisibility(View.INVISIBLE);
         //bat su kien xoa sua
 
         holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
