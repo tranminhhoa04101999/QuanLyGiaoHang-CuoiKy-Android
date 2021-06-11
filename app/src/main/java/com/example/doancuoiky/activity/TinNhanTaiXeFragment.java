@@ -47,12 +47,10 @@ public class TinNhanTaiXeFragment extends Fragment {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 tvTenTX.setText(response.body().getName());
-                Log.e("aaa",tvTenTX.getText().toString());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
             }
         });
     }

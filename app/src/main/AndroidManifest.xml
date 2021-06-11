@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAnCuoiKy"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ManHinhThemPhanCong"></activity>
+        <activity
+            android:name=".activity.ManHinhChat"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".activity.ManHinhThemPhanCong" />
         <activity android:name=".activity.ManHinhThemNhiemVu" />
         <activity android:name=".activity.ManHinhThemKhachHang" />
         <activity android:name=".activity.ManHinhChinhKhachHang" />
@@ -26,8 +29,15 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity.ManHinhChinhTaiXe"
+        <activity
+            android:name=".activity.ManHinhChinhTaiXe"
+            android:theme="@style/AppTheme.NoActionbar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ManHinhKhachHang"
             android:theme="@style/AppTheme.NoActionbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

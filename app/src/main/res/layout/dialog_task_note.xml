@@ -36,7 +36,7 @@
 
 
         <Button
-            android:id="@+id/btnThem"
+            android:id="@+id/btnChat"
             android:layout_marginTop="30dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
