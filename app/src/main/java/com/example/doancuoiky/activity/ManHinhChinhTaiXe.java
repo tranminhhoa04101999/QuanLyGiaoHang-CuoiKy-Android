@@ -23,14 +23,23 @@ public class ManHinhChinhTaiXe extends AppCompatActivity implements NavigationVi
 
     private DrawerLayout drawer;
 
-    private int iđ;
+    private int id;
+    private User user;
 
-    public int getIđ() {
-        return iđ;
+    public User getUser() {
+        return user;
     }
 
-    public void setIđ(int iđ) {
-        this.iđ = iđ;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -47,16 +56,24 @@ public class ManHinhChinhTaiXe extends AppCompatActivity implements NavigationVi
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        if(savedInstanceState==null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TinNhanTaiXeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_message);
-        }
         //lấy thông tin user từ bundle
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
 
         User thumbs= (User)bundle.getSerializable("objectUser");
-        setIđ(thumbs.getId());
+        setId(thumbs.getId());
+        setUser(thumbs);
+        if(savedInstanceState==null) {
+
+            TinNhanTaiXeFragment tinNhanTaiXeFragment = new TinNhanTaiXeFragment();
+            Bundle bundle2 = new Bundle();
+
+            bundle2.putInt("id", getId());
+            tinNhanTaiXeFragment.setArguments(bundle2);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,tinNhanTaiXeFragment).commit();
+            navigationView.setCheckedItem(R.id.nav_message);
+        }
+
     }
 
     @Override
@@ -68,7 +85,7 @@ public class ManHinhChinhTaiXe extends AppCompatActivity implements NavigationVi
             case R.id.taixe_misson:
                 NhiemVuTaiXeFragment nhiemVuTaiXeFragment = new NhiemVuTaiXeFragment();
                 Bundle bundle = new Bundle();
-                bundle.putInt("id", getIđ());
+                bundle.putInt("id", getId());
                 nhiemVuTaiXeFragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,nhiemVuTaiXeFragment).commit();
                 break;

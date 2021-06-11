@@ -76,6 +76,9 @@ public interface APIService {
     @DELETE("users/{id}")
     Call<Void> deleteUser(@Path("id") int id);
 
+    @GET("users/{id}")
+    Call<User> getUserById(@Path("id") int id);
+
     @POST("user/delete/{username}")
     Call<Void> deleteUserUsername(@Path("username") String username);
 
@@ -93,15 +96,16 @@ public interface APIService {
 
     @GET("taskdetail/{idtaixe}")
     Call<ArrayList<TaskDetail>> getTaskdetailByIdtaixe(@Path("idtaixe") int idtaixe);
-    
+
     @GET("taskdetails")
     Call<ArrayList<TaskDetail>> getTaskDetails();
 
     @POST("addTaskdetails/{userid}")
-    Call<Void> addTaskDetail(@Body TaskDetail taskDetail,@Path("userid")int id);
+    Call<Void> addTaskDetail(@Body TaskDetail taskDetail, @Path("userid") int id);
 
     @DELETE("taskdetails/{id}")
     Call<Void> deleteTaskDetail(@Path("id") int id);
 
-
+    @GET("taskdetails/taskId/{taskid}")
+    Call<ArrayList<TaskDetail>> getTaskDetailByTaskId(@Path("taskid") int id);
 }

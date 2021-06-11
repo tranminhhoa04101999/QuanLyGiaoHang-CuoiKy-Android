@@ -79,7 +79,8 @@ public class TaiXeTaskAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if(task.getApprove()){
-                    Toast.makeText(context.getActivity(), "Approve", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context.getActivity(), "Approve", Toast.LENGTH_SHORT).show();
+                    context.showDialog(task.getId());
                 }
             }
         });

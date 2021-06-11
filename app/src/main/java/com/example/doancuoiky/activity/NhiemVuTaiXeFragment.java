@@ -1,11 +1,14 @@
 package com.example.doancuoiky.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -36,8 +39,8 @@ public class NhiemVuTaiXeFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState){
-        View view = inflater.inflate(R.layout.fragment_nhiemvu_taixe,container,false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_nhiemvu_taixe, container, false);
         getDataTask();
         lvTask = (ListView) view.findViewById(R.id.lvTaskTaiXe);
         return view;
@@ -45,7 +48,7 @@ public class NhiemVuTaiXeFragment extends Fragment {
 
     private void getDataTask() {
         Bundle bundle = this.getArguments();
-        int idtaixe= 0;
+        int idtaixe = 0;
         if (bundle != null) {
             idtaixe = bundle.getInt("id");
         }
@@ -56,10 +59,11 @@ public class NhiemVuTaiXeFragment extends Fragment {
 //              Toast.makeText(ManHinhNhiemVu.this, taskArrayList2.get(0).toString(), Toast.LENGTH_SHORT).show();
                 List<Task> tasks = new ArrayList<>();
 
-                for(int i = 0;i<ArrayList2.size();i++){
-                tasks.add(ArrayList2.get(i).getTask());
+                for (int i = 0; i < ArrayList2.size(); i++) {
+                    tasks.add(ArrayList2.get(i).getTask());
 
-                }taskAdapter = new TaiXeTaskAdapter(NhiemVuTaiXeFragment.this, R.layout.dong_nhiem_vu,tasks);
+                }
+                taskAdapter = new TaiXeTaskAdapter(NhiemVuTaiXeFragment.this, R.layout.dong_nhiem_vu, tasks);
                 lvTask.setAdapter(taskAdapter);
                 taskAdapter.notifyDataSetChanged();
             }
@@ -86,6 +90,28 @@ public class NhiemVuTaiXeFragment extends Fragment {
                 Toast.makeText(getActivity(), "Call API that bai", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void showDialog(int id) {
+        APIService.apiService.getTaskDetailByTaskId(id).enqueue(new Callback<ArrayList<TaskDetail>>() {
+            @Override
+            public void onResponse(Call<ArrayList<TaskDetail>> call, Response<ArrayList<TaskDetail>> response) {
+                Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_task_note);
+                TextView tvGhiChu = dialog.findViewById(R.id.tvGhiChu);
+                tvGhiChu.setText(response.body().get(0).getTask_note());
+                dialog.setTitle("Add an Expense");
+                dialog.setCancelable(true);
+
+                dialog.show();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<TaskDetail>> call, Throwable t) {
+
+            }
+        });
+
     }
 
 }
