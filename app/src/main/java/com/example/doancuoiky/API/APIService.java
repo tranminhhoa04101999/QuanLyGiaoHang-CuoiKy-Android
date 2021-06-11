@@ -66,6 +66,12 @@ public interface APIService {
     @POST("UpdateTaskClient/{idClient}")
     Call<Void> UpdateTask(@Body Task task, @Path("idClient") int idClient);
 
+    @GET("task/idclient/{id}")
+    Call<ArrayList<Task>> getTaskByUserId(@Path("id") int id);
+
+    @GET("task/username/{username}")
+    Call<ArrayList<Task>> getTaskByUserName(@Path("username") String username);
+
     // User
     @GET("user/username/{username}")
     Call<ArrayList<User>> getUserKH(@Path("username") String username);
@@ -75,6 +81,9 @@ public interface APIService {
 
     @DELETE("users/{id}")
     Call<Void> deleteUser(@Path("id") int id);
+
+    @GET("users/{id}")
+    Call<User> getUserById(@Path("id") int id);
 
     @POST("user/delete/{username}")
     Call<Void> deleteUserUsername(@Path("username") String username);
@@ -86,6 +95,7 @@ public interface APIService {
     @POST("client/delete/{username}")
     Call<Void> deleteClientUsername(@Path("username") String username);
 
+
     @POST("clients")
     Call<Void> addClient(@Body Client client);
 
@@ -93,15 +103,23 @@ public interface APIService {
 
     @GET("taskdetail/{idtaixe}")
     Call<ArrayList<TaskDetail>> getTaskdetailByIdtaixe(@Path("idtaixe") int idtaixe);
-    
+
     @GET("taskdetails")
     Call<ArrayList<TaskDetail>> getTaskDetails();
 
     @POST("addTaskdetails/{userid}")
-    Call<Void> addTaskDetail(@Body TaskDetail taskDetail,@Path("userid")int id);
+    Call<Void> addTaskDetail(@Body TaskDetail taskDetail, @Path("userid") int id);
+
+    @POST("taskdetails/{taskDetailid}")
+    Call<Void> updateTaskDetailbyTaskDetailId(@Body TaskDetail taskDetail, @Path("taskDetailid") int id);
 
     @DELETE("taskdetails/{id}")
     Call<Void> deleteTaskDetail(@Path("id") int id);
 
+    @GET("taskdetails/taskId/{taskid}")
+    Call<ArrayList<TaskDetail>> getTaskDetailByTaskId(@Path("taskid") int id);
+
+    @POST("chat/{idTaskDetail}")
+    Call<Void> updateChat(@Body String chat, @Path("idTaskDetail") int id);
 
 }

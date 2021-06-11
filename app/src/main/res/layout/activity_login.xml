@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/ic_username_32"
             android:hint="Tài Khoản"
-            android:text="admin"
+            android:text="KHPTIT"
             />
         <EditText
             android:id="@+id/login_password"

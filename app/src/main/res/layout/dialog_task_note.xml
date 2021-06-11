@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_themuser"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="50dp"
+    android:layout_gravity="center"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvUserDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:text="Ghi chú"
+        android:textColor="#0080D6"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:id="@+id/tvGhiChu"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="center"
+            android:textColor="@color/colorBlue"
+            android:textSize="20dp" />
+
+
+
+
+
+        <Button
+            android:id="@+id/btnChat"
+            android:layout_marginTop="30dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btngreen"
+            android:text="Chat"
+            android:textColor="@color/black"
+            app:backgroundTint="@null" />
+
+
+
+
+</LinearLayout>

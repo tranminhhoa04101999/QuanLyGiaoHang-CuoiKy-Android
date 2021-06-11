@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class TaskDetail implements Serializable {
     private int id;
-    private User driver;
+    private User user;
     private Task task;
     private String task_note;
     private String chat;
@@ -12,9 +12,9 @@ public class TaskDetail implements Serializable {
     public TaskDetail() {
     }
 
-    public TaskDetail(int id, User driver, Task task, String task_note, String chat) {
+    public TaskDetail(int id, User user, Task task, String task_note, String chat) {
         this.id = id;
-        this.driver = driver;
+        this.user = user;
         this.task = task;
         this.task_note = task_note;
         this.chat = chat;
@@ -28,12 +28,12 @@ public class TaskDetail implements Serializable {
         this.id = id;
     }
 
-    public User getDriver() {
-        return driver;
+    public User getUser() {
+        return user;
     }
 
-    public void setDriver(User driver) {
-        this.driver = driver;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Task getTask() {
@@ -64,7 +64,7 @@ public class TaskDetail implements Serializable {
     public String toString() {
         return "TaskDetail{" +
                 "id=" + id +
-                ", driver=" + driver +
+                ", user=" + user +
                 ", task=" + task +
                 ", task_note='" + task_note + '\'' +
                 ", chat='" + chat + '\'' +

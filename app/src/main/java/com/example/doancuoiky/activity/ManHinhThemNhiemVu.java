@@ -18,7 +18,9 @@ import com.example.doancuoiky.adapter.ClientSpinnerAdapter;
 import com.example.doancuoiky.model.Client;
 import com.example.doancuoiky.model.Task;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,8 +46,13 @@ public class ManHinhThemNhiemVu extends AppCompatActivity {
 
         spnKH = findViewById(R.id.spnKH);
         getDataClient();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
+        String date = simpleDateFormat.format(new Date());
+        System.out.println(date.toString());
         EditText etPickup = findViewById(R.id.etPickup);
+        etPickup.setText(date);
 //        EditText etDropoff = findViewById(R.id.etDropoff);
 //
 //        CheckBox cbApprove = findViewById(R.id.cbApprovee);

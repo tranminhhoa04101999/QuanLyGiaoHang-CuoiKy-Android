@@ -1,6 +1,7 @@
 package com.example.doancuoiky.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,22 +9,21 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.doancuoiky.R;
-import com.example.doancuoiky.activity.ManHinhChinhNhiemVu;
 import com.example.doancuoiky.activity.NhiemVuTaiXeFragment;
+import com.example.doancuoiky.activity.XemTaskKhachHangFragment;
 import com.example.doancuoiky.model.Task;
 
 import java.util.List;
 
-public class TaiXeTaskAdapter extends BaseAdapter {
+public class KhachHangTaskAdapter extends BaseAdapter {
 
-    private NhiemVuTaiXeFragment context;
+    private XemTaskKhachHangFragment context;
     private int layout;
     private List<Task> taskList;
 
-    public TaiXeTaskAdapter(NhiemVuTaiXeFragment context, int layout, List<Task> taskList) {
+    public KhachHangTaskAdapter(XemTaskKhachHangFragment context, int layout, List<Task> taskList) {
         this.context = context;
         this.layout = layout;
         this.taskList = taskList;

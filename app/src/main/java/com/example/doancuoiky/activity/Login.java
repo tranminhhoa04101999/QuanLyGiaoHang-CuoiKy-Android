@@ -69,7 +69,7 @@ public class Login extends AppCompatActivity {
                     int checkid = mUser.getRole().getId();
                     Intent intent = new Intent(Login.this, ManHinhChinhTaiXe.class);
                     if(checkid == 2){
-                        intent = new Intent(Login.this, ManHinhChinhKhachHang.class);
+                        intent = new Intent(Login.this, ManHinhKhachHang.class);
                     }else if(checkid == 3){
                         intent = new Intent(Login.this,ManHinhChinhAdmin.class);
                     }

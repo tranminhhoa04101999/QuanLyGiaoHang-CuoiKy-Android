@@ -129,7 +129,20 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="60dp"
         android:background="@drawable/btnred"
-        android:text="Hủy"
+        android:text="Trở về"
+        android:textColor="@color/black"
+        app:backgroundTint="@null" />
+
+    <Button
+        android:id="@+id/btnXoaPhanCong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/btnredsolid"
+        android:text="Xóa Phân Công"
         android:textColor="@color/black"
         app:backgroundTint="@null" />
 

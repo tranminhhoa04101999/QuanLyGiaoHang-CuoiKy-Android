@@ -10,6 +10,22 @@ public class User implements Serializable {
     private String name;
     private String address;
     private Role role;
+    private Double lat;
+    private Double lng;
+
+    public User() {
+    }
+
+    public User(int id, String username, String password, String name, String address, Role role, Double lat, Double lng) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.address = address;
+        this.role = role;
+        this.lat = lat;
+        this.lng = lng;
+    }
 
     public int getId() {
         return id;
@@ -59,6 +75,22 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -68,6 +100,8 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", role=" + role +
+                ", lat=" + lat +
+                ", lng=" + lng +
                 '}';
     }
 }
