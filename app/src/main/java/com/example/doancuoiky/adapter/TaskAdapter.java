@@ -93,14 +93,14 @@ public class TaskAdapter extends BaseAdapter {
                 context.DialogXoa(task.getId());
             }
         });
-//        holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(task.getApprove()){
-//                    Toast.makeText(context, "Approve", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!task.getApprove()){
+                    context.themPhanCong(task);
+                }
+            }
+        });
         return convertView;
     }
 }

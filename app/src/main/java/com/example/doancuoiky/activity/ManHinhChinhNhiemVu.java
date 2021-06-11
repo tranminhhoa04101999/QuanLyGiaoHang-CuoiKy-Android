@@ -65,6 +65,8 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.themNhiemVu) {
             themNhiemVu();
+        } else if (item.getItemId() == R.id.themPhanCong) {
+            xemPhanCong();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -75,6 +77,23 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
         bundle.putString("action", "them");
         intent.putExtra("bundle", bundle);
         startActivityForResult(intent, 200);
+    }
+
+    public void themPhanCong(Task task) {
+        Intent intent = new Intent(ManHinhChinhNhiemVu.this, ManHinhThemPhanCong.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("action", "them");
+        bundle.putSerializable("task", task);
+        intent.putExtra("bundle", bundle);
+        startActivityForResult(intent, 200);
+    }
+
+    private void xemPhanCong() {
+//        Intent intent = new Intent(ManHinhChinhNhiemVu.this, ManHinhChinhPhanCong.class);
+////        Bundle bundle = new Bundle();
+////        bundle.putString("action", "them");
+////        intent.putExtra("bundle", bundle);
+//        startActivityForResult(intent, 200);
     }
 
     public void suaNhiemVu(Task task) {
