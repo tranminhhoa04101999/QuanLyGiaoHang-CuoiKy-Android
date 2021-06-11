@@ -3,7 +3,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
-    <style name="AppTheme.Components" parent="Theme.MaterialComponents.Light">
+    <style name="Apptheme.Components" parent="Theme.MaterialComponents.Light">
         <item name="colorControlNormal">@color/colorControlPicker</item>
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorControlPicker</item>
@@ -15,5 +15,9 @@
         <item name="colorOnSecondary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorSurface">@color/colorPrimary</item>
+    </style>
+    <style name="AppTheme.NoActionbar" parent="Theme.AppCompat.Light">
+        <item name ="windowActionBar">true </item>
+        <item name ="windowNoTitle">true </item>
     </style>
 </resources>

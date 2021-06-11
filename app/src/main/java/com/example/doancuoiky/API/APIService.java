@@ -3,6 +3,7 @@ package com.example.doancuoiky.API;
 import com.example.doancuoiky.model.Client;
 import com.example.doancuoiky.model.Role;
 import com.example.doancuoiky.model.Task;
+import com.example.doancuoiky.model.TaskDetail;
 import com.example.doancuoiky.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,7 +28,7 @@ public interface APIService {
             .create();
 
     APIService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.8:8080/")
+            .baseUrl("http://192.168.1.6:8080/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(APIService.class);
@@ -73,4 +74,8 @@ public interface APIService {
     @POST("clients")
     Call<Void> addClient(@Body Client client);
 
+    // task details
+
+    @GET("taskdetail/{idtaixe}")
+    Call<ArrayList<TaskDetail>> getTaskdetailByIdtaixe(@Path("idtaixe") int idtaixe);
 }

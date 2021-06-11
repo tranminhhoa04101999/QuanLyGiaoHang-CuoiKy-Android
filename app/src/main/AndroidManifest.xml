@@ -28,7 +28,8 @@
 
         </activity>
 
-        <activity android:name=".activity.ManHinhChinhTaiXe">
+        <activity android:name=".activity.ManHinhChinhTaiXe"
+            android:theme="@style/AppTheme.NoActionbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
