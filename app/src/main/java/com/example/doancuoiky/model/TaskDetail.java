@@ -1,6 +1,8 @@
 package com.example.doancuoiky.model;
 
-public class TaskDetail{
+import java.io.Serializable;
+
+public class TaskDetail implements Serializable {
     private int id;
     private User driver;
     private Task task;
@@ -64,7 +66,7 @@ public class TaskDetail{
                 "id=" + id +
                 ", driver=" + driver +
                 ", task=" + task +
-                ", tasknote='" + task_note + '\'' +
+                ", task_note='" + task_note + '\'' +
                 ", chat='" + chat + '\'' +
                 '}';
     }

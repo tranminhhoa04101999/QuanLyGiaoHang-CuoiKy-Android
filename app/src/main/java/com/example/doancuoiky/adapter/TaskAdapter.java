@@ -60,9 +60,9 @@ public class TaskAdapter extends BaseAdapter {
             convertView = inflater.inflate(layout, null);
             holder.tvClient = convertView.findViewById(R.id.tvClient);
             holder.tvPickup = convertView.findViewById(R.id.tvPickup);
-            holder.tvDropoff = convertView.findViewById(R.id.tvDropoff);
+//            holder.tvDropoff = convertView.findViewById(R.id.tvDropoff);
             holder.cbApprove = convertView.findViewById(R.id.cbApprove);
-            holder.cbPublic = convertView.findViewById(R.id.cbPublic);
+//            holder.cbPublic = convertView.findViewById(R.id.cbPublic);
 //            holder.cbCancel = convertView.findViewById(R.id.cbCancel);
             holder.ivEditTask = convertView.findViewById(R.id.ivEditTask);
             holder.ivDeleteTask = convertView.findViewById(R.id.ivDeleteTask);
@@ -75,15 +75,15 @@ public class TaskAdapter extends BaseAdapter {
         Task task = taskList.get(position);
         holder.tvClient.setText(task.getClient().getCompany());
         holder.tvPickup.setText(task.getPickup());
-        holder.tvDropoff.setText(task.getDropoff());
+//        holder.tvDropoff.setText(task.getDropoff());
         holder.cbApprove.setChecked(task.getApprove());
-        holder.cbPublic.setChecked(task.getTaskpublic());
+//        holder.cbPublic.setChecked(task.getTaskpublic());
 //        holder.cbCancel.setChecked(task.getCancel());
         //bat su kien xoa sua
         holder.ivEditTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogSua(task);
+                context.suaNhiemVu(task);
                // Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -96,8 +96,8 @@ public class TaskAdapter extends BaseAdapter {
         holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(task.getApprove()){
-                    Toast.makeText(context, "Approve", Toast.LENGTH_SHORT).show();
+                if(!task.getApprove()){
+                    context.themPhanCong(task);
                 }
             }
         });

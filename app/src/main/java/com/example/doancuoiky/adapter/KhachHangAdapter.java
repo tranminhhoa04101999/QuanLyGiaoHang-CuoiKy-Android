@@ -43,9 +43,10 @@ public class KhachHangAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView tvTen,tvID,tvDiaChi,tvPhone;
+        TextView tvTen, tvID, tvDiaChi, tvPhone;
         ImageView ivDelete, ivEdit;
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -56,17 +57,17 @@ public class KhachHangAdapter extends BaseAdapter {
             holder.tvTen = convertView.findViewById(R.id.tvCompany);
             holder.ivEdit = convertView.findViewById(R.id.ivEditClient);
             holder.ivDelete = convertView.findViewById(R.id.ivDeleteClient);
-           // holder.tvID=convertView.findViewById(R.id.tvCompany);
+            // holder.tvID=convertView.findViewById(R.id.tvCompany);
 
-            holder.tvPhone=convertView.findViewById(R.id.tvSDT);
-            holder.tvDiaChi=convertView.findViewById(R.id.tvAddress);
+            holder.tvPhone = convertView.findViewById(R.id.tvSDT);
+            holder.tvDiaChi = convertView.findViewById(R.id.tvAddress);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         Client khachHang = clientList.get(position);
         holder.tvTen.setText(khachHang.getCompany());
-       // holder.tvID.setText("Công ty: "+ khachHang.getCompany());
+        // holder.tvID.setText("Công ty: "+ khachHang.getCompany());
 
         holder.tvPhone.setText(khachHang.getPhone());
         holder.tvDiaChi.setText(khachHang.getAddress());
@@ -75,15 +76,15 @@ public class KhachHangAdapter extends BaseAdapter {
         holder.ivEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogSua(khachHang.getClientid(),khachHang.getCompany(),khachHang.getAddress(),khachHang.getPhone());
-                Toast.makeText(context, "sua " + khachHang.getCompany(), Toast.LENGTH_SHORT).show();
+                context.suaKhachHang(khachHang);
+//                Toast.makeText(context, "sua " + khachHang.getCompany(), Toast.LENGTH_SHORT).show();
             }
         });
 
         holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogXoa(khachHang.getClientid());
+                context.DialogXoa(khachHang);
             }
         });
 
