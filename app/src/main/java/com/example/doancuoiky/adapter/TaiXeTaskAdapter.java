@@ -1,6 +1,7 @@
 package com.example.doancuoiky.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,13 +74,16 @@ public class TaiXeTaskAdapter extends BaseAdapter {
         holder.tvClient.setText(task.getClient().getCompany());
         holder.tvPickup.setText(task.getPickup());
         holder.cbApprove.setChecked(task.getApprove());
+        holder.ivEditTask.setVisibility(View.INVISIBLE);
+        holder.ivDeleteTask.setVisibility(View.INVISIBLE);
         //bat su kien xoa sua
 
         holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(task.getApprove()){
-                    Toast.makeText(context.getActivity(), "Approve", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context.getActivity(), "Approve", Toast.LENGTH_SHORT).show();
+                    context.showDialog(task.getId());
                 }
             }
         });

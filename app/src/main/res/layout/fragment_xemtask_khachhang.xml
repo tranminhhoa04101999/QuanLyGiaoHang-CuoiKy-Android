@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/dsTaskKhachHang"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="Danh sách nhiệm vụ"
+        android:textColor="#0000FF"
+        android:textSize="25dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/tvClient"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4.5"
+                    android:gravity="left"
+                    android:paddingRight="2px"
+                    android:text="Khách hàng"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    android:paddingRight="2px"
+                    android:text="Ngày nhận"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+                />
+
+                <!--            <TextView-->
+                <!--                android:layout_width="0dp"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_weight="2"-->
+                <!--                android:gravity="left"-->
+                <!--                android:paddingRight="2px"-->
+                <!--                android:text="Ngày giao"-->
+                <!--                android:textColor="#000000"-->
+                <!--                android:textSize="12dp" />-->
+                <!--            />-->
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="3.5"
+                    android:gravity="center"
+                    android:text="Đang giao"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <!--            <TextView-->
+                <!--                android:layout_width="0dp"-->
+                <!--                android:layout_height="30dp"-->
+                <!--                android:layout_weight="1"-->
+                <!--                android:gravity="center"-->
+                <!--                android:text="Public"-->
+                <!--                android:textColor="#000000"-->
+                <!--                android:textSize="9sp" />-->
+
+                <!--            <TextView-->
+                <!--                android:layout_width="0dp"-->
+                <!--                android:layout_height="30dp"-->
+                <!--                android:layout_weight="1"-->
+                <!--                android:gravity="center"-->
+                <!--                android:text="Cancel"-->
+                <!--                android:textColor="#000000"-->
+                <!--                android:textSize="9sp" />-->
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0" ></LinearLayout>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvTaskKhachHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/black"
+        android:dividerHeight="0.5dp"
+        android:footerDividersEnabled="true" />
+    </LinearLayout>
+</FrameLayout>
