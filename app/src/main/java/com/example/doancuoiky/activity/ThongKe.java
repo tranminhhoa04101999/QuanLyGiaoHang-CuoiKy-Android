@@ -41,12 +41,12 @@ public class ThongKe extends AppCompatActivity {
 
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_thongke,menu);
+        getMenuInflater().inflate(R.menu.menu_thongke, menu);
         return super.onCreatePanelMenu(featureId, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected( MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_option0:
                 Intent intentTK = new Intent(this, BieuDo.class);
@@ -71,35 +71,38 @@ public class ThongKe extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
         hienthithongke(tasks);
     }
 
-    public void hienthithongke(ArrayList<Task> tasks){
+    public void hienthithongke(ArrayList<Task> tasks) {
         //databaseHelper = new DatabaseHelper(ThongKeTask.this,"QLDHDB.sqlite",null,1);
         //databaseHelper.QueryData("DELETE FROM SANPHAM WHERE MASP = '3'");
         //String sql = "SELECT * FROM SANPHAM";
         //Cursor cursor = databaseHelper.GetData(sql);
         thongKeResults.clear();
         //while(cursor.moveToNext()){
-        int approve = 0,cancel = 0;
-        for(int i =0; i<tasks.size();i++){
-            if (tasks.get(i).getApprove())
-                approve++;
-            else
-                cancel++;
+        int danggiao = 0, chuagiao = 0, hoanthanh = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getApprove() && !tasks.get(i).getTaskpublic())
+                danggiao++;
+            else if (!tasks.get(i).getApprove())
+                chuagiao++;
+            if (tasks.get(i).getTaskpublic()) hoanthanh++;
         }
-        thongKeResults.add(new ThongKeResult("đang giao", approve));
-        thongKeResults.add(new ThongKeResult("đã giao", cancel));
+        thongKeResults.add(new ThongKeResult("Đang giao", danggiao));
+        thongKeResults.add(new ThongKeResult("Chưa giao", chuagiao));
+        thongKeResults.add(new ThongKeResult("Hoàn thành", hoanthanh));
 //            Log.e("SELECT * FROM :",MASP + "  "+ tensp + "  "+xuatxu+"  "+dongia+"  "+hinhanh);
-        thongKeAdapter = new ThongKeAdapter(this, R.layout.tung_thongke,thongKeResults);
+        thongKeAdapter = new ThongKeAdapter(this, R.layout.tung_thongke, thongKeResults);
         listViewthongKe.setAdapter(thongKeAdapter);
         tv_tong.setText(String.valueOf(tasks.size()));
     }
 
-    public void getTask(){
+    public void getTask() {
         APIService.apiService.getTasks().enqueue(new Callback<ArrayList<Task>>() {
             @Override
             public void onResponse(Call<ArrayList<Task>> call, Response<ArrayList<Task>> response) {
