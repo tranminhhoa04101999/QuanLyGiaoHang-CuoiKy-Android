@@ -84,18 +84,15 @@ public class ThongKe extends AppCompatActivity {
         //Cursor cursor = databaseHelper.GetData(sql);
         thongKeResults.clear();
         //while(cursor.moveToNext()){
-        int approve = 0,taskpubic=0,cancel = 0;
+        int approve = 0,cancel = 0;
         for(int i =0; i<tasks.size();i++){
             if (tasks.get(i).getApprove())
                 approve++;
-            if (tasks.get(i).getCancel())
+            else
                 cancel++;
-            if (tasks.get(i).getTaskpublic())
-                taskpubic++;
         }
-        thongKeResults.add(new ThongKeResult("approve", approve));
-        thongKeResults.add(new ThongKeResult("task public", taskpubic));
-        thongKeResults.add(new ThongKeResult("cancel", cancel));
+        thongKeResults.add(new ThongKeResult("đang giao", approve));
+        thongKeResults.add(new ThongKeResult("đã giao", cancel));
 //            Log.e("SELECT * FROM :",MASP + "  "+ tensp + "  "+xuatxu+"  "+dongia+"  "+hinhanh);
         thongKeAdapter = new ThongKeAdapter(this, R.layout.tung_thongke,thongKeResults);
         listViewthongKe.setAdapter(thongKeAdapter);

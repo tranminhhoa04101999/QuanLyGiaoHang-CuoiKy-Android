@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doancuoiky.R;
@@ -62,6 +65,18 @@ public class ManHinhChinhTaiXe extends AppCompatActivity implements NavigationVi
         User thumbs= (User)bundle.getSerializable("objectUser");
         setId(thumbs.getId());
         setUser(thumbs);
+        /*Log.e("helo","" +thumbs.getId());
+        Log.e("helo","" +thumbs.getName());
+        Log.e("helo","" +thumbs.getPassword());
+        Log.e("helo","" +thumbs.getId());*/
+        //NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
+        View hView = navigationView.getHeaderView(0);
+        TextView tvTenTX = (TextView) hView.findViewById(R.id.HeaderUserName);
+        tvTenTX.setText(thumbs.getName());
+
+        TextView address = (TextView) hView.findViewById(R.id.HeaderDiaChi);
+        address.setText(thumbs.getAddress());
+
         if(savedInstanceState==null) {
 
             TinNhanTaiXeFragment tinNhanTaiXeFragment = new TinNhanTaiXeFragment();
@@ -70,18 +85,13 @@ public class ManHinhChinhTaiXe extends AppCompatActivity implements NavigationVi
             bundle2.putInt("id", getId());
             tinNhanTaiXeFragment.setArguments(bundle2);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,tinNhanTaiXeFragment).commit();
-            navigationView.setCheckedItem(R.id.nav_message);
         }
-
         toggle.syncState();
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.nav_message:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TinNhanTaiXeFragment()).commit();
-                break;
             case R.id.taixe_misson:
                 NhiemVuTaiXeFragment nhiemVuTaiXeFragment = new NhiemVuTaiXeFragment();
                 Bundle bundle = new Bundle();
@@ -92,11 +102,8 @@ public class ManHinhChinhTaiXe extends AppCompatActivity implements NavigationVi
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TrangCaNhanTaiXeFragment()).commit();
                 break;
-            case R.id.nav_share:
-                Toast.makeText(this,"share123",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_send:
-                Toast.makeText(this,"Send213",Toast.LENGTH_LONG).show();
+            case R.id.Contact:
+                Toast.makeText(this,"021312398413",Toast.LENGTH_LONG).show();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
