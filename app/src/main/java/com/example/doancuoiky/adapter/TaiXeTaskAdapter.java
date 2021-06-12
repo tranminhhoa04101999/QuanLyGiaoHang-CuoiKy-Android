@@ -47,7 +47,7 @@ public class TaiXeTaskAdapter extends BaseAdapter {
 
     private class ViewHolder {
         TextView tvClient, tvPickup;
-        CheckBox cbApprove;
+        CheckBox cbApprove, cbPublic;
         ImageView ivDeleteTask, ivEditTask;
         View layout_dong_nv;
     }
@@ -62,6 +62,7 @@ public class TaiXeTaskAdapter extends BaseAdapter {
             holder.tvClient = convertView.findViewById(R.id.tvClient);
             holder.tvPickup = convertView.findViewById(R.id.tvPickup);
             holder.cbApprove = convertView.findViewById(R.id.cbApprove);
+            holder.cbPublic = convertView.findViewById(R.id.cbPublic);
             holder.ivEditTask = convertView.findViewById(R.id.ivEditTask);
             holder.ivDeleteTask = convertView.findViewById(R.id.ivDeleteTask);
             holder.layout_dong_nv = convertView.findViewById(R.id.layout_dong_nv);
@@ -74,7 +75,8 @@ public class TaiXeTaskAdapter extends BaseAdapter {
         Task task = taskList.get(position);
         holder.tvClient.setText(task.getClient().getCompany());
         holder.tvPickup.setText(task.getPickup());
-        holder.cbApprove.setChecked(task.getApprove());
+        holder.cbApprove.setVisibility(View.INVISIBLE);
+        holder.cbPublic.setVisibility(View.INVISIBLE);
         holder.ivEditTask.setVisibility(View.INVISIBLE);
         holder.ivDeleteTask.setVisibility(View.INVISIBLE);
         //bat su kien xoa sua
