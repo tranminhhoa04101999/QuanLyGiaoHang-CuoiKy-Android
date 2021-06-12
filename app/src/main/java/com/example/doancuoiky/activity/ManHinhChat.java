@@ -124,8 +124,6 @@ public class ManHinhChat extends AppCompatActivity {
                     public void onResponse(Call<ArrayList<TaskDetail>> call, Response<ArrayList<TaskDetail>> response) {
                         if (!tvChat.getText().equals(response.body().get(0).getChat())) {
                             tvChat.setText(response.body().get(0).getChat());
-                            taskDetailId = response.body().get(0).getId();
-                            taskDetail = response.body().get(0);
                             scrollView.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -133,6 +131,9 @@ public class ManHinhChat extends AppCompatActivity {
                                 }
                             });
                         }
+                        taskDetailId = response.body().get(0).getId();
+                        taskDetail = response.body().get(0);
+
                     }
 
                     @Override
