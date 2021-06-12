@@ -65,6 +65,18 @@ public class ManHinhChat extends AppCompatActivity {
 
         taskid = getIntent().getIntExtra("taskid", 0);
         Log.e("a", taskid + " " + taskDetailId);
+        APIService.apiService.getTaskDetailByTaskId(taskid).enqueue(new Callback<ArrayList<TaskDetail>>() {
+            @Override
+            public void onResponse(Call<ArrayList<TaskDetail>> call, Response<ArrayList<TaskDetail>> response) {
+                taskDetailId = response.body().get(0).getId();
+                taskDetail = response.body().get(0);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<TaskDetail>> call, Throwable t) {
+
+            }
+        });
 
         scrollView = findViewById(R.id.myscrollview);
         scrollView.post(new Runnable() {

@@ -47,7 +47,7 @@ public class TaskAdapter extends BaseAdapter {
 
     private class ViewHolder {
         TextView tvClient, tvPickup, tvDropoff;
-        CheckBox cbApprove, cbPublic, cbCancel;
+        CheckBox cbApprove, cbPublic;
         ImageView ivDeleteTask, ivEditTask;
         View layout_dong_nv;
     }
@@ -63,7 +63,7 @@ public class TaskAdapter extends BaseAdapter {
             holder.tvPickup = convertView.findViewById(R.id.tvPickup);
 //            holder.tvDropoff = convertView.findViewById(R.id.tvDropoff);
             holder.cbApprove = convertView.findViewById(R.id.cbApprove);
-//            holder.cbPublic = convertView.findViewById(R.id.cbPublic);
+            holder.cbPublic = convertView.findViewById(R.id.cbPublic);
 //            holder.cbCancel = convertView.findViewById(R.id.cbCancel);
             holder.ivEditTask = convertView.findViewById(R.id.ivEditTask);
             holder.ivDeleteTask = convertView.findViewById(R.id.ivDeleteTask);
@@ -78,7 +78,7 @@ public class TaskAdapter extends BaseAdapter {
         holder.tvPickup.setText(task.getPickup());
 //        holder.tvDropoff.setText(task.getDropoff());
         holder.cbApprove.setChecked(task.getApprove());
-//        holder.cbPublic.setChecked(task.getTaskpublic());
+        holder.cbPublic.setChecked(task.getTaskpublic());
 //        holder.cbCancel.setChecked(task.getCancel());
         //bat su kien xoa sua
         holder.ivEditTask.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +88,13 @@ public class TaskAdapter extends BaseAdapter {
                 // Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
             }
         });
-        if (task.getApprove()) holder.ivDeleteTask.setVisibility(View.INVISIBLE);
+        if (task.getApprove() || task.getTaskpublic()) {
+            holder.ivDeleteTask.setVisibility(View.INVISIBLE);
+        }
+        if(task.getTaskpublic()){
+            holder.ivEditTask.setVisibility(View.INVISIBLE);
+        }
+
         holder.ivDeleteTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,10 +104,12 @@ public class TaskAdapter extends BaseAdapter {
         holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!task.getApprove()) {
-                    context.themPhanCong(task);
-                } else {
-                    context.suaPhanCong(task);
+                if (!task.getTaskpublic()) {
+                    if (!task.getApprove()) {
+                        context.themPhanCong(task);
+                    } else {
+                        context.suaPhanCong(task);
+                    }
                 }
             }
         });

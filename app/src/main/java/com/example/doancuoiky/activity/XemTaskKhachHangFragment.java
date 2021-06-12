@@ -3,6 +3,7 @@ package com.example.doancuoiky.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,29 @@ public class XemTaskKhachHangFragment extends Fragment {
     ListView lvTask;
     KhachHangTaskAdapter taskAdapter;
     ArrayList<Client> clients;
-//    Task task = new Task();
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 500;
+
+
+    @Override
+    public void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                //do something
+                getDataTask();
+                handler.postDelayed(runnable, delay);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+
+    @Override
+    public void onPause() {
+        handler.removeCallbacks(runnable);
+        super.onPause();
+    }
 
     @Nullable
     @Override
@@ -114,11 +137,6 @@ public class XemTaskKhachHangFragment extends Fragment {
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 Toast.makeText(getContext(), "Đã hoàn thành đơn!", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
-                                try {
-                                    Thread.sleep(500);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
                                 getDataTask();
                             }
 

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +39,30 @@ public class ManHinhChinhTaiKhoan extends AppCompatActivity {
     ListView lvTaiKhoan;
     ArrayList<User> userArrayList;
     UserAdapter userAdapter;
+
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 500;
+
+
+    @Override
+    protected void onResume() {
+        handler.postDelayed( runnable = new Runnable() {
+            public void run() {
+                //do something
+                getDataUser();
+                handler.postDelayed(runnable, delay);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        handler.removeCallbacks(runnable);
+        super.onPause();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,11 +130,7 @@ public class ManHinhChinhTaiKhoan extends AppCompatActivity {
         if (requestCode == 200) {
             getDataUser();
         }
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -140,11 +161,7 @@ public class ManHinhChinhTaiKhoan extends AppCompatActivity {
                 Log.d("ececeeee", t.getMessage());
             }
         });
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         getDataUser();
     }
 
