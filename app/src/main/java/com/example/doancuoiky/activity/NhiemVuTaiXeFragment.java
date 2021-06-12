@@ -65,8 +65,9 @@ public class NhiemVuTaiXeFragment extends Fragment {
                 List<Task> tasks = new ArrayList<>();
 
                 for (int i = 0; i < ArrayList2.size(); i++) {
-                    tasks.add(ArrayList2.get(i).getTask());
-
+                    if (!ArrayList2.get(i).getTask().getTaskpublic()) {
+                        tasks.add(ArrayList2.get(i).getTask());
+                    }
                 }
                 taskAdapter = new TaiXeTaskAdapter(NhiemVuTaiXeFragment.this, R.layout.dong_nhiem_vu, tasks);
                 lvTask.setAdapter(taskAdapter);
@@ -108,20 +109,22 @@ public class NhiemVuTaiXeFragment extends Fragment {
 
                 dialog.setTitle("Add an Expense");
                 dialog.setCancelable(true);
-                Button btnDinhVi=dialog.findViewById(R.id.btnXemMap);
+                Button btnDinhVi = dialog.findViewById(R.id.btnXemMap);
                 btnDinhVi.setVisibility(View.GONE);
-                Button btnChat=dialog.findViewById(R.id.btnChat);
+                Button btnChat = dialog.findViewById(R.id.btnChat);
                 btnChat.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getContext(), ManHinhChat.class);
-                        intent.putExtra("taskid",id);
-                        intent.putExtra("role","tx");
+                        intent.putExtra("taskid", id);
+                        intent.putExtra("role", "tx");
                         startActivity(intent);
                         dialog.dismiss();
                     }
                 });
 
+                Button btnComplete = dialog.findViewById(R.id.btnComplete);
+                btnComplete.setVisibility(View.GONE);
                 dialog.show();
             }
 

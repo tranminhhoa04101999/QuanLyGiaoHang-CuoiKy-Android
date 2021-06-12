@@ -43,13 +43,13 @@ public class ManHinhChat extends AppCompatActivity {
     TaskDetail taskDetail;
     int taskid;
     int taskDetailId;
+    ScrollView scrollView;
 
     //phan nay la cua map
 
     FusedLocationProviderClient fusedLocationProviderClient;
     ;
     List<Address> addresses;
-
 
 
     Handler handler = new Handler();
@@ -66,7 +66,7 @@ public class ManHinhChat extends AppCompatActivity {
         taskid = getIntent().getIntExtra("taskid", 0);
         Log.e("a", taskid + " " + taskDetailId);
 
-        ScrollView scrollView = findViewById(R.id.myscrollview);
+        scrollView = findViewById(R.id.myscrollview);
         scrollView.post(new Runnable() {
             @Override
             public void run() {
@@ -81,46 +81,34 @@ public class ManHinhChat extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                etChat.setText(etChat.getText().toString().trim());
+                if (!etChat.getText().toString().trim().isEmpty()) {
+                    String uname = getIntent().getStringExtra("role").equals("kh") ? "(KH) " + taskDetail.getTask().getClient().getUsername() : "(TX) " + taskDetail.getUser().getName();
+                    String newchat = tvChat.getText().toString() + "\n\n" + uname + ": " + etChat.getText().toString();
 
+                    tvChat.setText(newchat);
+                    taskDetail.setChat(newchat);
+                    APIService.apiService.updateTaskDetailbyTaskDetailId(taskDetail, taskDetailId).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
 
+                        }
 
-//                Log.e("senddd", taskDetailId + "");
-                String uname = getIntent().getStringExtra("role").equals("kh") ? taskDetail.getTask().getClient().getUsername() : taskDetail.getUser().getName();
-                String newchat = tvChat.getText().toString() + "\n" + uname + ": " + etChat.getText().toString();
-//                Log.e("aaa", newchat);
-//                newchat.replace("\r", "");
-                tvChat.setText(newchat);//+ System.getProperty("line.separator") +
-                taskDetail.setChat(newchat);
-                APIService.apiService.updateTaskDetailbyTaskDetailId(taskDetail, taskDetailId).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
 
-                    }
+                        }
+                    });
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-
-                    }
-                });
-//                APIService.apiService.updateChat(newchat, taskDetailId).enqueue(new Callback<Void>() {
-//                    @Override
-//                    public void onResponse(Call<Void> call, Response<Void> response) {
-//                        Log.e("test",newchat);
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<Void> call, Throwable t) {
-//                        Log.e("senddd", t.getMessage());
-//
-//                    }
-//                });
-                etChat.setText("");
-                scrollView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                    }
-                });
+                    etChat.setText("");
+                    scrollView = findViewById(R.id.myscrollview);
+                    scrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                        }
+                    });
+                }
             }
         });
     }
@@ -134,9 +122,17 @@ public class ManHinhChat extends AppCompatActivity {
                 APIService.apiService.getTaskDetailByTaskId(taskid).enqueue(new Callback<ArrayList<TaskDetail>>() {
                     @Override
                     public void onResponse(Call<ArrayList<TaskDetail>> call, Response<ArrayList<TaskDetail>> response) {
-                        tvChat.setText(response.body().get(0).getChat());
-                        taskDetailId = response.body().get(0).getId();
-                        taskDetail = response.body().get(0);
+                        if (!tvChat.getText().equals(response.body().get(0).getChat())) {
+                            tvChat.setText(response.body().get(0).getChat());
+                            taskDetailId = response.body().get(0).getId();
+                            taskDetail = response.body().get(0);
+                            scrollView.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                                }
+                            });
+                        }
                     }
 
                     @Override
@@ -144,8 +140,8 @@ public class ManHinhChat extends AppCompatActivity {
 
                     }
                 });
-                
-                if (getIntent().getStringExtra("role").equals("tx")){
+
+                if (getIntent().getStringExtra("role").equals("tx")) {
                     if (ActivityCompat.checkSelfPermission(ManHinhChat.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
                             @Override
@@ -159,7 +155,7 @@ public class ManHinhChat extends AppCompatActivity {
                                         User user = taskDetail.getUser();
                                         user.setLat(addresses.get(0).getLatitude());
                                         user.setLng(addresses.get(0).getLongitude());
-                                        APIService.apiService.updateUserById(user,taskDetail.getUser().getId()).enqueue(new Callback<Void>() {
+                                        APIService.apiService.updateUserById(user, taskDetail.getUser().getId()).enqueue(new Callback<Void>() {
                                             @Override
                                             public void onResponse(Call<Void> call, Response<Void> response) {
 
@@ -167,7 +163,7 @@ public class ManHinhChat extends AppCompatActivity {
 
                                             @Override
                                             public void onFailure(Call<Void> call, Throwable t) {
-                                                Log.e("add location fal","");
+                                                Log.e("add location fal", "");
 
                                             }
                                         });
@@ -177,7 +173,8 @@ public class ManHinhChat extends AppCompatActivity {
                                     }
 
                                 } else {
-                                    Toast.makeText(ManHinhChat.this, "that bai", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(ManHinhChat.this, "that bai", Toast.LENGTH_SHORT).show();
+                                    Log.e("location: ", "that bai");
                                 }
                             }
                         });

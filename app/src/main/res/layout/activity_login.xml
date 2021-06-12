@@ -50,6 +50,8 @@
             android:drawableRight="@drawable/ic_username_32"
             android:hint="Tài Khoản"
             android:text=""
+            android:inputType="text"
+            android:maxLines="1"
             />
         <EditText
             android:id="@+id/login_password"

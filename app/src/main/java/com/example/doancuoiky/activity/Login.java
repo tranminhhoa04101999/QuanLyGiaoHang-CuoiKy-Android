@@ -39,9 +39,11 @@ public class Login extends AppCompatActivity {
 
                 if (edt_username.getText().toString().equals("")){
                     Toast.makeText(Login.this, "Không được để trống Username", Toast.LENGTH_SHORT).show();
+                    edt_username.requestFocus();
                     return;
                 }else if(edt_password.getText().toString().equals("")){
                     Toast.makeText(Login.this, "Không được để trống Password", Toast.LENGTH_SHORT).show();
+                    edt_password.requestFocus();
                     return;
                 }
                 String username = edt_username.getText().toString();

@@ -4,11 +4,11 @@
     android:id="@+id/dialog_themuser"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="50dp"
     android:layout_gravity="center"
     android:background="#FFFFFF"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="50dp">
 
     <TextView
         android:id="@+id/tvUserDialog"
@@ -21,41 +21,46 @@
         android:textSize="25dp"
         android:textStyle="bold" />
 
-        <TextView
-            android:layout_marginTop="30dp"
-            android:id="@+id/tvGhiChu"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:gravity="center"
-            android:textColor="@color/colorBlue"
-            android:textSize="20dp" />
+    <TextView
+        android:id="@+id/tvGhiChu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/colorBlue"
+        android:textSize="20dp" />
 
 
-
-
-
-        <Button
-            android:id="@+id/btnChat"
-            android:layout_marginTop="30dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btngreen"
-            android:text="Chat"
-            android:textColor="@color/black"
-            app:backgroundTint="@null" />
+    <Button
+        android:id="@+id/btnChat"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btngreen"
+        android:text="Chat"
+        android:textColor="@color/black"
+        app:backgroundTint="@null" />
 
     <Button
         android:id="@+id/btnXemMap"
-        android:layout_marginTop="20dp"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btngreen"
         android:text="Định vị"
         android:textColor="@color/black"
         app:backgroundTint="@null" />
 
-
+    <Button
+        android:id="@+id/btnComplete"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btngreen"
+        android:text="Hoàn tất"
+        android:textColor="@color/black"
+        app:backgroundTint="@null" />
 
 
 </LinearLayout>

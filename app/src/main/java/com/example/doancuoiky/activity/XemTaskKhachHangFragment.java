@@ -34,9 +34,7 @@ import retrofit2.Response;
 
 public class XemTaskKhachHangFragment extends Fragment {
     ListView lvTask;
-    Spinner spnKH;
     KhachHangTaskAdapter taskAdapter;
-    ClientSpinnerAdapter clientSpinnerAdapter;
     ArrayList<Client> clients;
 //    Task task = new Task();
 
@@ -61,7 +59,7 @@ public class XemTaskKhachHangFragment extends Fragment {
             public void onResponse(Call<ArrayList<Task>> call, Response<ArrayList<Task>> response) {
                 ArrayList<Task> ArrayList2 = response.body();
 //              Toast.makeText(ManHinhNhiemVu.this, taskArrayList2.get(0).toString(), Toast.LENGTH_SHORT).show();
-                taskAdapter = new KhachHangTaskAdapter(XemTaskKhachHangFragment.this, R.layout.dong_nhiem_vu, ArrayList2);
+                taskAdapter = new KhachHangTaskAdapter(XemTaskKhachHangFragment.this, R.layout.dong_nhiem_vu_layoutkhachhang, ArrayList2);
                 lvTask.setAdapter(taskAdapter);
                 taskAdapter.notifyDataSetChanged();
             }
@@ -73,25 +71,8 @@ public class XemTaskKhachHangFragment extends Fragment {
         });
     }
 
-    private void getDataClient() {
-        APIService.apiService.getClients().enqueue(new Callback<ArrayList<Client>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Client>> call, Response<ArrayList<Client>> response) {
-                clients = response.body();
-                clientSpinnerAdapter = new ClientSpinnerAdapter(getActivity(), R.layout.dong_khach_hang_spinner, clients);
-                spnKH.setAdapter(clientSpinnerAdapter);
-                clientSpinnerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Client>> call, Throwable t) {
-                Toast.makeText(getActivity(), "Call API that bai", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void showDialog(int id) {
-        APIService.apiService.getTaskDetailByTaskId(id).enqueue(new Callback<ArrayList<TaskDetail>>() {
+    public void showDialog(Task task) {
+        APIService.apiService.getTaskDetailByTaskId(task.getId()).enqueue(new Callback<ArrayList<TaskDetail>>() {
             @Override
             public void onResponse(Call<ArrayList<TaskDetail>> call, Response<ArrayList<TaskDetail>> response) {
                 Dialog dialog = new Dialog(getContext());
@@ -107,8 +88,8 @@ public class XemTaskKhachHangFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getContext(), ManHinhChat.class);
-                        intent.putExtra("taskid",id);
-                        intent.putExtra("role","kh");
+                        intent.putExtra("taskid", task.getId());
+                        intent.putExtra("role", "kh");
                         startActivity(intent);
                         dialog.dismiss();
                     }
@@ -117,11 +98,38 @@ public class XemTaskKhachHangFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getContext(), ManHinhMapTaiXe.class);
-                        intent.putExtra("taskid",id);
+                        intent.putExtra("taskid", task.getId());
                         startActivity(intent);
                         dialog.dismiss();
                     }
                 });
+
+                Button btnComplete = dialog.findViewById(R.id.btnComplete);
+                btnComplete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        task.setTaskpublic(true);
+                        APIService.apiService.addTask(task, task.getClient().getClientid()).enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                Toast.makeText(getContext(), "Đã hoàn thành đơn!", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                                try {
+                                    Thread.sleep(500);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                getDataTask();
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                Log.e("loi hoan thanh don:", t.getMessage());
+                            }
+                        });
+                    }
+                });
+
                 dialog.show();
             }
 

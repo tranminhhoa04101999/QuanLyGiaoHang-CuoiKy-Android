@@ -11,7 +11,9 @@
     <ScrollView
         android:id="@+id/myscrollview"
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="550dp"
+        android:layout_marginBottom="20dp"
+        android:background="#A6A6F5FF">
 
         <TextView
             android:id="@+id/tvChat"
@@ -19,10 +21,13 @@
             android:layout_height="match_parent"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:padding="15dp"/>
     </ScrollView>
 
     <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -33,7 +38,10 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="8"
-            android:background="#959595" />
+            android:background="@drawable/btngreen"
+            android:hint="Nhập tin nhắn..."
+            android:paddingLeft="12dp"
+            />
 
         <Button
             android:id="@+id/btnSend"
@@ -42,7 +50,10 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="40dp"
             android:layout_gravity="right"
-            android:text="Send" />
+            android:text="Send"
+            android:textColor="@color/black"
+            android:background="@drawable/btngreen"
+            app:backgroundTint="@null"/>
     </LinearLayout>
 
 

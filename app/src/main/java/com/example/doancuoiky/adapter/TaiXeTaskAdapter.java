@@ -29,6 +29,7 @@ public class TaiXeTaskAdapter extends BaseAdapter {
         this.layout = layout;
         this.taskList = taskList;
     }
+
     @Override
     public int getCount() {
         return taskList.size();
@@ -63,7 +64,7 @@ public class TaiXeTaskAdapter extends BaseAdapter {
             holder.cbApprove = convertView.findViewById(R.id.cbApprove);
             holder.ivEditTask = convertView.findViewById(R.id.ivEditTask);
             holder.ivDeleteTask = convertView.findViewById(R.id.ivDeleteTask);
-            holder.layout_dong_nv=convertView.findViewById(R.id.layout_dong_nv);
+            holder.layout_dong_nv = convertView.findViewById(R.id.layout_dong_nv);
 
             convertView.setTag(holder);
         } else {
@@ -81,7 +82,7 @@ public class TaiXeTaskAdapter extends BaseAdapter {
         holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(task.getApprove()){
+                if (task.getApprove() && !task.getTaskpublic()) {
 //                    Toast.makeText(context.getActivity(), "Approve", Toast.LENGTH_SHORT).show();
                     context.showDialog(task.getId());
                 }
