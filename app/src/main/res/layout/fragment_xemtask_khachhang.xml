@@ -16,7 +16,7 @@
         android:gravity="center_horizontal"
         android:text="Danh sách đơn hàng"
         android:textColor="#0000FF"
-        android:textSize="25dp" />
+        android:textSize="30dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                     android:paddingRight="2px"
                     android:text="Ngày nhận"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
                 />
 
                 <!--            <TextView-->
@@ -74,7 +74,7 @@
                     android:gravity="center"
                     android:text="Đang giao"
                     android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -83,7 +83,7 @@
                     android:gravity="center"
                     android:text="Đã giao"
                     android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <!--            <TextView-->
                 <!--                android:layout_width="0dp"-->
