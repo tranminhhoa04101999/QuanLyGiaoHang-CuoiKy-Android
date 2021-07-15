@@ -18,21 +18,27 @@ import java.util.ArrayList;
 public class BieuDo extends AppCompatActivity {
     ArrayList<Integer> soLuongList = new ArrayList<>();
     ArrayList<String> loaiTask = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie_chart);
         Bundle bundle = getIntent().getExtras();
         soLuongList = bundle.getIntegerArrayList("soluong");
-        loaiTask =bundle.getStringArrayList("loaiTask");
-        PieChart pieChart= findViewById(R.id.pieChart);
+        loaiTask = bundle.getStringArrayList("loaiTask");
+        PieChart pieChart = findViewById(R.id.pieChart);
 
         ArrayList<PieEntry> visitors = new ArrayList<>();
-        for(int i=0;i<soLuongList.size();i++){
-            visitors.add(new PieEntry(soLuongList.get(i) ,loaiTask.get(i)));
+        int sum = 0;
+        for (int i : soLuongList) {
+            sum += i;
+        }
+        for (int i = 0; i < soLuongList.size(); i++) {
+            if (soLuongList.get(i) < 1) continue;
+            visitors.add(new PieEntry(soLuongList.get(i) * 100 / sum, loaiTask.get(i)));
         }
 
-        PieDataSet pieDataSet=new PieDataSet(visitors,"Thống kê");
+        PieDataSet pieDataSet = new PieDataSet(visitors, "Thống kê");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         pieDataSet.setValueTextColor(Color.BLACK);
         pieDataSet.setValueTextSize(16f);

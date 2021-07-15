@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,30 @@ import retrofit2.Response;
 public class ManHinhChinhKhachHang extends AppCompatActivity {
     ListView lvClient;
     KhachHangAdapter khachHangAdapter;
+
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 500;
+
+
+    @Override
+    protected void onResume() {
+        handler.postDelayed( runnable = new Runnable() {
+            public void run() {
+                //do something
+                getDataClient();
+                handler.postDelayed(runnable, delay);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        handler.removeCallbacks(runnable);
+        super.onPause();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +82,6 @@ public class ManHinhChinhKhachHang extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 200) {
             getDataClient();
-        }
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -136,11 +156,7 @@ public class ManHinhChinhKhachHang extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 deleteClient(client.getClientid(), client.getUsername());
                 dialog.dismiss();
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 getDataClient();
             }
         });

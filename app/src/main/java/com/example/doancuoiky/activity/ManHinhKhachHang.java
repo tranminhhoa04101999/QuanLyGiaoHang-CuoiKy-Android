@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,7 +33,6 @@ public class ManHinhKhachHang extends AppCompatActivity implements NavigationVie
     public void setUser(User user) {
         this.user = user;
     }
-
 
     public String getUsermame() {
         return usermame;
@@ -61,6 +62,13 @@ public class ManHinhKhachHang extends AppCompatActivity implements NavigationVie
 
         User kh= (User)bundle.getSerializable("objectUser");
         setUsermame(kh.getUsername());
+
+        View hView = navigationView.getHeaderView(0);
+        TextView tvTenTX = (TextView) hView.findViewById(R.id.HeaderUserName);
+        tvTenTX.setText(kh.getName());
+
+        TextView address = (TextView) hView.findViewById(R.id.HeaderDiaChi);
+        address.setText(kh.getAddress());
        // setUser(kh);
         if(savedInstanceState==null) {
 
@@ -71,9 +79,7 @@ public class ManHinhKhachHang extends AppCompatActivity implements NavigationVie
             bundle2.putString("id", getUsermame());
             xemTaskKhachHangFragment.setArguments(bundle2);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,xemTaskKhachHangFragment).commit();
-            navigationView.setCheckedItem(R.id.nav_message);
         }
-
     }
 
     @Override
@@ -92,11 +98,8 @@ public class ManHinhKhachHang extends AppCompatActivity implements NavigationVie
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TrangCaNhanKhachHangFragment()).commit();
                 break;
-            case R.id.nav_share:
-                Toast.makeText(this,"share123",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_send:
-                Toast.makeText(this,"Send213",Toast.LENGTH_LONG).show();
+            case R.id.Contact:
+                Toast.makeText(this,"021312398413",Toast.LENGTH_LONG).show();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
