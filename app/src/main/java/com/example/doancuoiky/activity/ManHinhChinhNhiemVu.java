@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,29 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
     ListView lvTask;
     TaskAdapter taskAdapter;
 
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 500;
+
+
+    @Override
+    protected void onResume() {
+        handler.postDelayed( runnable = new Runnable() {
+            public void run() {
+                //do something
+                getDataTask();
+                handler.postDelayed(runnable, delay);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        handler.removeCallbacks(runnable);
+        super.onPause();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,11 +134,6 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
         if (requestCode == 200) {
             getDataTask();
         }
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -143,11 +162,6 @@ public class ManHinhChinhNhiemVu extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 deleteTask(id);
                 dialog.dismiss();
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 getDataTask();
             }
         });

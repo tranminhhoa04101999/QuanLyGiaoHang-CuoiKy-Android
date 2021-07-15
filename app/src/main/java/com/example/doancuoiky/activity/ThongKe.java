@@ -2,6 +2,7 @@ package com.example.doancuoiky.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -28,6 +29,30 @@ public class ThongKe extends AppCompatActivity {
     ArrayList<Task> tasks;
     TextView tv_tong;
 
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 500;
+
+
+    @Override
+    protected void onResume() {
+        handler.postDelayed( runnable = new Runnable() {
+            public void run() {
+                //do something
+                getTask();
+                handler.postDelayed(runnable, delay);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        handler.removeCallbacks(runnable);
+        super.onPause();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +66,12 @@ public class ThongKe extends AppCompatActivity {
 
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_thongke,menu);
+        getMenuInflater().inflate(R.menu.menu_thongke, menu);
         return super.onCreatePanelMenu(featureId, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected( MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_option0:
                 Intent intentTK = new Intent(this, BieuDo.class);
@@ -71,38 +96,38 @@ public class ThongKe extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
         hienthithongke(tasks);
     }
 
-    public void hienthithongke(ArrayList<Task> tasks){
+    public void hienthithongke(ArrayList<Task> tasks) {
         //databaseHelper = new DatabaseHelper(ThongKeTask.this,"QLDHDB.sqlite",null,1);
         //databaseHelper.QueryData("DELETE FROM SANPHAM WHERE MASP = '3'");
         //String sql = "SELECT * FROM SANPHAM";
         //Cursor cursor = databaseHelper.GetData(sql);
         thongKeResults.clear();
         //while(cursor.moveToNext()){
-        int approve = 0,taskpubic=0,cancel = 0;
-        for(int i =0; i<tasks.size();i++){
-            if (tasks.get(i).getApprove())
-                approve++;
-            if (tasks.get(i).getCancel())
-                cancel++;
-            if (tasks.get(i).getTaskpublic())
-                taskpubic++;
+        int danggiao = 0, chuagiao = 0, hoanthanh = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getApprove() && !tasks.get(i).getTaskpublic())
+                danggiao++;
+            else if (!tasks.get(i).getApprove())
+                chuagiao++;
+            if (tasks.get(i).getTaskpublic()) hoanthanh++;
         }
-        thongKeResults.add(new ThongKeResult("approve", approve));
-        thongKeResults.add(new ThongKeResult("task public", taskpubic));
-        thongKeResults.add(new ThongKeResult("cancel", cancel));
+        thongKeResults.add(new ThongKeResult("Đang giao", danggiao));
+        thongKeResults.add(new ThongKeResult("Chưa giao", chuagiao));
+        thongKeResults.add(new ThongKeResult("Hoàn thành", hoanthanh));
 //            Log.e("SELECT * FROM :",MASP + "  "+ tensp + "  "+xuatxu+"  "+dongia+"  "+hinhanh);
-        thongKeAdapter = new ThongKeAdapter(this, R.layout.tung_thongke,thongKeResults);
+        thongKeAdapter = new ThongKeAdapter(this, R.layout.tung_thongke, thongKeResults);
         listViewthongKe.setAdapter(thongKeAdapter);
         tv_tong.setText(String.valueOf(tasks.size()));
     }
 
-    public void getTask(){
+    public void getTask() {
         APIService.apiService.getTasks().enqueue(new Callback<ArrayList<Task>>() {
             @Override
             public void onResponse(Call<ArrayList<Task>> call, Response<ArrayList<Task>> response) {

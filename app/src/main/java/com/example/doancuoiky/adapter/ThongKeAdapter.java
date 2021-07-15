@@ -51,7 +51,7 @@ public class ThongKeAdapter extends BaseAdapter {
 
         // ánh xạ và gán giá trị
         TextView txtTenSP =  (TextView) convertView.findViewById(R.id.tv_stt);
-        txtTenSP.setText("Stt : " + (position+1));
+        txtTenSP.setText("" + (position+1));
 
         TextView txtXuatXu = convertView.findViewById(R.id.tv_loaiTask);
         txtXuatXu.setText("Loại task : "+ thongKeResults.get(position).getLoaiTask());

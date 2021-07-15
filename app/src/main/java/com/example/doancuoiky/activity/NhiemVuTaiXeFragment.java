@@ -3,7 +3,9 @@ package com.example.doancuoiky.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.example.doancuoiky.model.Client;
 import com.example.doancuoiky.model.Task;
 import com.example.doancuoiky.model.TaskDetail;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +40,29 @@ public class NhiemVuTaiXeFragment extends Fragment {
     TaiXeTaskAdapter taskAdapter;
     ClientSpinnerAdapter clientSpinnerAdapter;
     ArrayList<Client> clients;
-//    Task task = new Task();
+
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 500;
+
+
+    @Override
+    public void onResume() {
+        handler.postDelayed( runnable = new Runnable() {
+            public void run() {
+                //do something
+                getDataTask();
+                handler.postDelayed(runnable, delay);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        handler.removeCallbacks(runnable);
+        super.onPause();
+    }
 
     @Nullable
     @Override
@@ -62,8 +87,9 @@ public class NhiemVuTaiXeFragment extends Fragment {
                 List<Task> tasks = new ArrayList<>();
 
                 for (int i = 0; i < ArrayList2.size(); i++) {
-                    tasks.add(ArrayList2.get(i).getTask());
-
+                    if (!ArrayList2.get(i).getTask().getTaskpublic()) {
+                        tasks.add(ArrayList2.get(i).getTask());
+                    }
                 }
                 taskAdapter = new TaiXeTaskAdapter(NhiemVuTaiXeFragment.this, R.layout.dong_nhiem_vu, tasks);
                 lvTask.setAdapter(taskAdapter);
@@ -77,22 +103,6 @@ public class NhiemVuTaiXeFragment extends Fragment {
         });
     }
 
-    private void getDataClient() {
-        APIService.apiService.getClients().enqueue(new Callback<ArrayList<Client>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Client>> call, Response<ArrayList<Client>> response) {
-                clients = response.body();
-                clientSpinnerAdapter = new ClientSpinnerAdapter(getActivity(), R.layout.dong_khach_hang_spinner, clients);
-                spnKH.setAdapter(clientSpinnerAdapter);
-                clientSpinnerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Client>> call, Throwable t) {
-                Toast.makeText(getActivity(), "Call API that bai", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     public void showDialog(int id) {
         APIService.apiService.getTaskDetailByTaskId(id).enqueue(new Callback<ArrayList<TaskDetail>>() {
@@ -105,18 +115,22 @@ public class NhiemVuTaiXeFragment extends Fragment {
 
                 dialog.setTitle("Add an Expense");
                 dialog.setCancelable(true);
-                Button btnChat=dialog.findViewById(R.id.btnChat);
+                Button btnDinhVi = dialog.findViewById(R.id.btnXemMap);
+                btnDinhVi.setVisibility(View.GONE);
+                Button btnChat = dialog.findViewById(R.id.btnChat);
                 btnChat.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getContext(), ManHinhChat.class);
-                        intent.putExtra("taskid",id);
-                        intent.putExtra("role","tx");
+                        intent.putExtra("taskid", id);
+                        intent.putExtra("role", "tx");
                         startActivity(intent);
                         dialog.dismiss();
                     }
                 });
 
+                Button btnComplete = dialog.findViewById(R.id.btnComplete);
+                btnComplete.setVisibility(View.GONE);
                 dialog.show();
             }
 

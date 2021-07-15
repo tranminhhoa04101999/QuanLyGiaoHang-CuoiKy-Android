@@ -12,13 +12,15 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher_round"/>
     <TextView
+        android:id="@+id/HeaderUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Coding in Flow"
+        android:text="ABC"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
     <TextView
+        android:id="@+id/HeaderDiaChi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="info@codingflow.com"/>
+        android:text="diachi"/>
 </LinearLayout>
