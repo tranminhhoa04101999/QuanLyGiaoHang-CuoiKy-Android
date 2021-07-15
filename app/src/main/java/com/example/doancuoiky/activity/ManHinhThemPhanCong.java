@@ -85,7 +85,7 @@ public class ManHinhThemPhanCong extends AppCompatActivity {
             tvTieuDe.setText("Thêm Phân Công");
             btnXoa.setVisibility(View.GONE);
         } else {
-
+            btnThem.setText("Cập nhật");
             tvTieuDe.setText("Chỉnh Sửa Phân Công");
             APIService.apiService.getTaskDetails().enqueue(new Callback<ArrayList<TaskDetail>>() {
                 @Override

@@ -28,6 +28,7 @@ public class KhachHangTaskAdapter extends BaseAdapter {
         this.layout = layout;
         this.taskList = taskList;
     }
+
     @Override
     public int getCount() {
         return taskList.size();
@@ -45,8 +46,7 @@ public class KhachHangTaskAdapter extends BaseAdapter {
 
     private class ViewHolder {
         TextView tvClient, tvPickup;
-        CheckBox cbApprove;
-        ImageView ivDeleteTask, ivEditTask;
+        CheckBox cbApprove,cbPublic;
         View layout_dong_nv;
     }
 
@@ -60,9 +60,8 @@ public class KhachHangTaskAdapter extends BaseAdapter {
             holder.tvClient = convertView.findViewById(R.id.tvClient);
             holder.tvPickup = convertView.findViewById(R.id.tvPickup);
             holder.cbApprove = convertView.findViewById(R.id.cbApprove);
-            holder.ivEditTask = convertView.findViewById(R.id.ivEditTask);
-            holder.ivDeleteTask = convertView.findViewById(R.id.ivDeleteTask);
-            holder.layout_dong_nv=convertView.findViewById(R.id.layout_dong_nv);
+            holder.cbPublic=convertView.findViewById(R.id.cbPublic);
+            holder.layout_dong_nv = convertView.findViewById(R.id.layout_dong_nv);
 
             convertView.setTag(holder);
         } else {
@@ -73,16 +72,15 @@ public class KhachHangTaskAdapter extends BaseAdapter {
         holder.tvClient.setText(task.getClient().getCompany());
         holder.tvPickup.setText(task.getPickup());
         holder.cbApprove.setChecked(task.getApprove());
-        holder.ivDeleteTask.setVisibility(View.INVISIBLE);
-        holder.ivEditTask.setVisibility(View.INVISIBLE);
+        holder.cbPublic.setChecked(task.getTaskpublic());
         //bat su kien xoa sua
 
         holder.layout_dong_nv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(task.getApprove()){
+                if (task.getApprove() && !task.getTaskpublic()) {
 //                    Toast.makeText(context.getActivity(), "Approve", Toast.LENGTH_SHORT).show();
-                    context.showDialog(task.getId());
+                    context.showDialog(task);
                 }
             }
         });

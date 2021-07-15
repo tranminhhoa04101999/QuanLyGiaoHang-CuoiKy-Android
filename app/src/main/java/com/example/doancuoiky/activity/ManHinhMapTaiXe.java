@@ -59,7 +59,7 @@ public class ManHinhMapTaiXe extends AppCompatActivity {
 
 
         mMapView = new MapView(this, MapRenderMode.VECTOR);  // or use MapRenderMode.RASTER for 2D map
-        mMapView.setCredentialsKey("Ai7DgnDiSxfayqjt2UQdkBfckPq4_3-xRtbmcaSl95Cu0SJEHEHyDRcz1WwP3Md7");
+        mMapView.setCredentialsKey("AhAZm7Spr5nB_NCUAoUqeaOdnQNQkaUiDiVZnFSY5wb8rII_gVDRB9SvuM7HN5MC");//Ai7DgnDiSxfayqjt2UQdkBfckPq4_3-xRtbmcaSl95Cu0SJEHEHyDRcz1WwP3Md7
         ((FrameLayout) findViewById(R.id.map_view)).addView(mMapView);
         mMapView.onCreate(savedInstanceState);
         mPinLayer = new MapElementLayer();
@@ -68,7 +68,7 @@ public class ManHinhMapTaiXe extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                APIService.apiService.layUserByTaskId(getIntent().getIntExtra("taskid",0)).enqueue(new Callback<User>() {
+                APIService.apiService.layUserByTaskId(getIntent().getIntExtra("taskid", 0)).enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         mPinLayer.getElements().clear();

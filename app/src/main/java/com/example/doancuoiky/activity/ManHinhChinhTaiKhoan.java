@@ -3,29 +3,28 @@ package com.example.doancuoiky.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doancuoiky.API.APIService;
 import com.example.doancuoiky.R;
-import com.example.doancuoiky.adapter.ClientSpinnerAdapter;
 import com.example.doancuoiky.adapter.RoleSpinnerAdapter;
 import com.example.doancuoiky.adapter.UserAdapter;
-import com.example.doancuoiky.model.Client;
 import com.example.doancuoiky.model.Role;
 import com.example.doancuoiky.model.Task;
 import com.example.doancuoiky.model.User;
@@ -38,12 +37,32 @@ import retrofit2.Response;
 
 public class ManHinhChinhTaiKhoan extends AppCompatActivity {
     ListView lvTaiKhoan;
-    Spinner spnRole;
     ArrayList<User> userArrayList;
     UserAdapter userAdapter;
-    RoleSpinnerAdapter roleSpinnerAdapter;
-    ArrayList<Role> roles;
-    User user = new User();
+
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 500;
+
+
+    @Override
+    protected void onResume() {
+        handler.postDelayed( runnable = new Runnable() {
+            public void run() {
+                //do something
+                getDataUser();
+                handler.postDelayed(runnable, delay);
+            }
+        }, delay);
+        super.onResume();
+    }
+
+
+    @Override
+    protected void onPause() {
+        handler.removeCallbacks(runnable);
+        super.onPause();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,22 +93,7 @@ public class ManHinhChinhTaiKhoan extends AppCompatActivity {
         });
     }
 
-    private void getDataRole() {
-        APIService.apiService.getRoles().enqueue(new Callback<ArrayList<Role>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Role>> call, Response<ArrayList<Role>> response) {
-                roles = response.body();
-                roleSpinnerAdapter = new RoleSpinnerAdapter(ManHinhChinhTaiKhoan.this, R.layout.dong_role_spinner, roles);
-                spnRole.setAdapter(roleSpinnerAdapter);
-                roleSpinnerAdapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onFailure(Call<ArrayList<Role>> call, Throwable t) {
-                Toast.makeText(ManHinhChinhTaiKhoan.this, "Call API that bai", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,88 +104,41 @@ public class ManHinhChinhTaiKhoan extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.themTaiKhoan) {
-            DialogThem();
-
+            themTaiKhoan();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void DialogThem() {
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_them_tai_khoan);
-
-        spnRole = dialog.findViewById(R.id.spnRole);
-        getDataRole();
-
-        EditText etUsername = dialog.findViewById(R.id.etusername);
-        EditText etPassword = dialog.findViewById(R.id.etPassword);
-        EditText etTen = dialog.findViewById(R.id.etName);
-        EditText etDiaChi = dialog.findViewById(R.id.etDiachi);
-
-        Button btnThem = dialog.findViewById(R.id.btnThem);
-        Button btnHuy = dialog.findViewById(R.id.btnHuy);
-
-
-        btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.setCanceledOnTouchOutside(false);
-
-        btnThem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = etUsername.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
-                String name = etTen.getText().toString().trim();
-                String address = etDiaChi.getText().toString().trim();
-                if (username.equals("")) {
-                    Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập username!", Toast.LENGTH_SHORT).show();
-                    etUsername.requestFocus();
-                } else if (password.equals("")) {
-                    Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập password!", Toast.LENGTH_SHORT).show();
-                    etPassword.requestFocus();
-
-                }
-                else if (name.equals("")) {
-                    Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập tên!", Toast.LENGTH_SHORT).show();
-                    etTen.requestFocus();
-
-                }
-                else if (address.equals("")) {
-                    Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập địa chỉ!", Toast.LENGTH_SHORT).show();
-                    etDiaChi.requestFocus();
-
-                }else {
-                    Role role = roles.get(spnRole.getSelectedItemPosition());
-                    user.setId(0);
-                    user.setRole(null);
-                    user.setUsername(username);
-                    user.setPassword(password);
-                    user.setName(name);
-                    user.setAddress(address);
-
-                    addUser(user, role.getId());
-//                    Toast.makeText(ManHinhNhiemVu.this, "Thêm thành công!" + client.toString(), Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-
-                }
-            }
-        });
-        dialog.show();
+    private void themTaiKhoan() {
+        Intent intent = new Intent(ManHinhChinhTaiKhoan.this, ManHinhThemTaiKhoan.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("action", "them");
+        intent.putExtra("bundle", bundle);
+        startActivityForResult(intent, 200);
+    }
+    public void suaTaiKhoan(User user) {
+        Intent intent = new Intent(ManHinhChinhTaiKhoan.this, ManHinhThemTaiKhoan.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("action", "sua");
+        bundle.putSerializable("user", user);
+        intent.putExtra("bundle", bundle);
+        startActivityForResult(intent, 200);
     }
 
-    private void addUser(User user, int idRole) {
-        APIService.apiService.addUser(user, idRole).enqueue(new Callback<Void>() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 200) {
+            getDataUser();
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void deleteUser(User user) {
+        APIService.apiService.deleteUser(user.getId()).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(ManHinhChinhTaiKhoan.this, "Thêm Mới Thành Công", Toast.LENGTH_SHORT).show();
-                    getDataUser();
-                }
+
             }
 
             @Override
@@ -189,15 +146,12 @@ public class ManHinhChinhTaiKhoan extends AppCompatActivity {
                 Log.d("ececeeee", t.getMessage());
             }
         });
-    }
-
-    private void deleteUser(int id) {
-        APIService.apiService.deleteUser(id).enqueue(new Callback<Void>() {
+        APIService.apiService.deleteClientUsername(user.getUsername()).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(ManHinhChinhTaiKhoan.this, "Xoá Thành Công", Toast.LENGTH_SHORT).show();
-                    getDataUser();
+
 
                 }
             }
@@ -207,87 +161,18 @@ public class ManHinhChinhTaiKhoan extends AppCompatActivity {
                 Log.d("ececeeee", t.getMessage());
             }
         });
+
+        getDataUser();
     }
 
-    public void DialogSua(User user) {
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_them_tai_khoan);
-
-        spnRole = dialog.findViewById(R.id.spnRole);
-        getDataRole();
-
-        EditText etUsername = dialog.findViewById(R.id.etusername);
-        etUsername.setText(user.getUsername());
-        EditText etPassword = dialog.findViewById(R.id.etPassword);
-        etPassword.setText(user.getPassword());
-        EditText etTen = dialog.findViewById(R.id.etName);
-        etTen.setText(user.getName());
-        EditText etDiaChi = dialog.findViewById(R.id.etDiachi);
-        etDiaChi.setText(user.getAddress());
-
-        Button btnThem = dialog.findViewById(R.id.btnThem);
-        Button btnHuy = dialog.findViewById(R.id.btnHuy);
-
-
-        btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.setCanceledOnTouchOutside(false);
-
-        btnThem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = etUsername.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
-                String name = etTen.getText().toString().trim();
-                String address = etDiaChi.getText().toString().trim();
-                if (etUsername.equals("")) {
-                    Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập username!", Toast.LENGTH_SHORT).show();
-                    etUsername.requestFocus();
-                } else if (etPassword.equals("")) {
-                    Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập password!", Toast.LENGTH_SHORT).show();
-                    etPassword.requestFocus();
-
-                }
-                else if (etTen.equals("")) {
-                    Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập tên!", Toast.LENGTH_SHORT).show();
-                    etTen.requestFocus();
-
-                }
-                else if (etDiaChi.equals("")) {
-                    Toast.makeText(ManHinhChinhTaiKhoan.this, "Vui lòng nhập địa chỉ!", Toast.LENGTH_SHORT).show();
-                    etDiaChi.requestFocus();
-
-                }else {
-                    Role role = roles.get(spnRole.getSelectedItemPosition());
-                    user.setRole(null);
-                    user.setUsername(username);
-                    user.setPassword(password);
-                    user.setName(name);
-                    user.setAddress(address);
-
-                    addUser(user, role.getId());
-//                    Toast.makeText(ManHinhNhiemVu.this, "Thêm thành công!" + client.toString(), Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-
-                }
-            }
-        });
-        dialog.show();
-    }
-
-    public void DialogXoa(int id) {
+    public void DialogXoa(User user) {
         AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
-        dialogXoa.setMessage("Xóa user: '" + id + "' ?");
+        dialogXoa.setMessage("Xóa user: '" + user.getName() + "' ?");
         dialogXoa.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                deleteUser(id);
-                Toast.makeText(ManHinhChinhTaiKhoan.this, "Xóa thành công!", Toast.LENGTH_SHORT).show();
+                deleteUser(user);
+//                Toast.makeText(ManHinhChinhTaiKhoan.this, "Xóa thành công!", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });

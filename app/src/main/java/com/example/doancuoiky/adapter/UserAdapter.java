@@ -77,14 +77,14 @@ public class UserAdapter extends BaseAdapter {
         holder.ivEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               context.DialogSua(user);
+               context.suaTaiKhoan(user);
                // Toast.makeText(context, "sua " + task.getId(), Toast.LENGTH_SHORT).show();
             }
         });
         holder.ivDeleteUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogXoa(user.getId());
+                context.DialogXoa(user);
             }
         });
 
