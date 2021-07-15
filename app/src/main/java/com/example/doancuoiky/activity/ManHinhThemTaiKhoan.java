@@ -62,11 +62,11 @@ public class ManHinhThemTaiKhoan extends AppCompatActivity {
             etPassword.setText(oldUser.getPassword());
             etTen.setText(oldUser.getName());
             etDiaChi.setText(oldUser.getAddress());
-            if (oldUser.getRole().getId() == 2) {
+//            if (oldUser.getRole().getId() == 2) {
                 spnRole.setVisibility(View.INVISIBLE);
                 View layoutRole = findViewById(R.id.layoutChucVu);
                 layoutRole.setVisibility(View.GONE);
-            }
+//            }
 
             APIService.apiService.getRoles().enqueue(new Callback<ArrayList<Role>>() {
                 @Override
